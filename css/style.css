@@ -411,6 +411,44 @@ section p.text-muted {
 }
 
 /* Botões do Formulário */
+/* Estilos para os novos campos select no formulário de orçamento */
+.custom-select-btn {
+    background-color: var(--form-input-bg); /* Usa a cor de fundo do input */
+    border: 1px solid var(--form-input-border); /* Borda padrão dos inputs */
+    color: var(--form-input-text); /* Cor do texto padrão dos inputs */
+    padding: 0.375rem 2.25rem 0.375rem 0.75rem; /* Padding do Bootstrap select */
+    border-radius: 0.375rem; /* Border-radius do Bootstrap select */
+    appearance: none; /* Remove a seta padrão do navegador */
+    -webkit-appearance: none; /* Para Webkit browsers */
+    -moz-appearance: none; /* Para Firefox */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2334D399' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e"); /* Seta customizada */
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    transition: all 0.3s ease; /* Para a animação de escala no hover */
+    width: 100%; /* Garante que o select ocupe toda a largura disponível */
+}
+
+/* Estilo para o hover, para manter a animação animate-scale-hover */
+.custom-select-btn:hover {
+    transform: scale(1.01); /* Leve aumento de escala no hover, menos que nos cards */
+    box-shadow: 0 4px 15px rgba(52, 211, 153, 0.1); /* Sombra sutil */
+    border-color: var(--primary-color);
+}
+
+.custom-select-btn:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(52, 211, 153, 0.25);
+    outline: 0;
+}
+
+/* Cor das opções no tema escuro */
+[data-bs-theme="dark"] .custom-select-btn option {
+    background-color: var(--form-input-bg);
+    color: var(--form-input-text);
+}
+
+
 .budget-form-section .btn-outline-custom,
 .contact-form-section .btn-outline-custom {
     color: var(--text-color) !important; /* Cor do texto padrão */

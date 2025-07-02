@@ -306,79 +306,68 @@
         </div>
     </section>
 
-  <section class="budget-form-section py-5">
-        <div class="container">
-            <div class="text-center mb-4 animate-on-scroll">
+<section class="budget-form-section py-5">
+    <div class="container">
+        <div class="text-center mb-4 animate-on-scroll">
             <h2 class="fw-bold">Receba sua proposta personalizada</h2>
             <p class="text-muted">Responda algumas perguntas rápidas e receba um orçamento sob medida.</p>
-            </div>
+        </div>
 
-            <div class="row justify-content-center">
+        <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6 animate-on-scroll" style="animation-delay: 0.1s;">
                 <div class="form-card custom-card p-4 rounded-4">
-                <small class="text-muted">Pergunta 1 de 4</small>
-                <div class="progress mb-3" style="height: 4px;">
-                    <div class="progress-bar custom-bg-primary" style="width: 25%;"></div>
-                </div>
-
-                <!-- FORM COMEÇA AQUI -->
-                <form action="https://docs.google.com/forms/d/e/1FAIpQLSctRD3_K6smlCEa-feXEXvRvea37iJ__m58qkJlTYLuWUPjJw/formResponse" method="POST" target="_blank">
-                    
-                    <!-- Tipo de Projeto -->
-                    <div class="mb-3">
-                    <label class="form-label fw-semibold">Tipo de projeto:</label>
-                    <select name="entry.63363144" class="form-select btn-outline-custom animate-scale-hover" required>
-                        <option value="">Selecione</option>
-                        <option value="Site">Site</option>
-                        <option value="Sistema">Sistema</option>
-                        <option value="E-commerce">E-commerce</option>
-                        <option value="Outro">Outro</option>
-                    </select>
+                    <small class="text-muted">Pergunta 1 de 4</small>
+                    <div class="progress mb-3" style="height: 4px;">
+                        <div class="progress-bar custom-bg-primary" style="width: 25%;"></div>
                     </div>
 
-                    <!-- Já possui domínio/hospedagem? -->
-                    <div class="mb-3">
-                    <label class="form-label fw-semibold">Já possui domínio/hospedagem?</label>
-                    <select name="entry.488898895" class="form-select btn-outline-custom animate-scale-hover" required>
-                        <option value="">Selecione</option>
-                        <option value="Sim">Sim</option>
-                        <option value="Não">Não</option>
-                        <option value="Não sei">Não sei</option>
-                    </select>
+                    <form id="budgetForm" method="POST"> <div class="mb-3">
+                            <label class="form-label fw-semibold">Tipo de projeto:</label>
+                            <select name="entry.1836656458" class="form-select custom-select-btn animate-scale-hover" required>
+                                <option value="" disabled selected>Selecione uma opção</option>
+                                <option value="Site">Site</option>
+                                <option value="Sistema">Sistema</option>
+                                <option value="E-commerce">E-commerce</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Já possui domínio/hospedagem?</label>
+                            <select name="entry.2056863859" class="form-select custom-select-btn animate-scale-hover" required>
+                                <option value="" disabled selected>Selecione uma opção</option>
+                                <option value="Sim">Sim</option>
+                                <option value="Não">Não</option>
+                                <option value="Não sei">Não sei</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Orçamento estimado:</label>
+                            <select name="entry.1798839420" class="form-select custom-select-btn animate-scale-hover" required>
+                                <option value="" disabled selected>Selecione uma opção</option>
+                                <option value="Até R$1.000,00">Até R$1.000</option>
+                                <option value="R$1.000,00 – R$3.000,00">R$1.000 – R$3.000</option>
+                                <option value="R$3.000,00 – R$5.000,00">R$3.000 – R$5.000</option>
+                                <option value="Acima de R$5.000,00">Acima de R$5.000</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Descrição da ideia:</label>
+                            <textarea name="entry.1243384291" class="form-control animate-scale-hover" rows="4" placeholder="Conte-nos sobre seu projeto..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary-custom w-100 mt-3 animate-pulse-hover">
+                            <i class="bi bi-send"></i> Receber Proposta
+                        </button>
+
+                    </form>
                     </div>
-
-                    <!-- Orçamento estimado -->
-                    <div class="mb-3">
-                    <label class="form-label fw-semibold">Orçamento estimado:</label>
-                    <select name="entry.973067403" class="form-select btn-outline-custom animate-scale-hover" required>
-                        <option value="">Selecione</option>
-                        <option value="Até R$1.000">Até R$1.000</option>
-                        <option value="R$1.000 – R$3.000">R$1.000 – R$3.000</option>
-                        <option value="R$3.000 – R$5.000">R$3.000 – R$5.000</option>
-                        <option value="Acima de R$5.000">Acima de R$5.000</option>
-                    </select>
-                    </div>
-
-                    <!-- Descrição -->
-                    <div class="mb-3">
-                    <label class="form-label fw-semibold">Descrição da ideia:</label>
-                    <textarea name="entry.1004111813" class="form-control animate-scale-hover" rows="4" placeholder="Conte-nos sobre seu projeto..." required></textarea>
-                    </div>
-
-                    <!-- Botão -->
-                    <button type="submit" class="btn btn-primary-custom w-100 mt-3 animate-pulse-hover">
-                    <i class="bi bi-send"></i> Receber Proposta
-                    </button>
-
-                </form>
-                <!-- FORM TERMINA AQUI -->
-
-                </div>
-            </div>
             </div>
         </div>
-        </section>
-
+    </div>
+</section>
     <section class="contact-form-section py-5">
         <div class="container">
             <div class="text-center mb-5 animate-on-scroll">
@@ -487,6 +476,52 @@
                 element.classList.add('fade-in-up');
             });
         });
+        
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('budgetForm');
+        // A URL de envio do seu Google Forms (a mesma que você usou no 'action' antes)
+        const googleFormsUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSctRD3_K6smlCEa-feXEXvRvea37iJ__m58qkJlTYLuWUPjJw/formResponse';
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário (que abriria a nova aba)
+
+            // Coleta os dados do formulário
+            const formData = new FormData(form);
+
+            // Converte FormData para URL-encoded (formato que o Google Forms espera)
+            // FormData por si só envia multipart/form-data, mas o Google Forms espera application/x-www-form-urlencoded
+            // Precisamos reconstruir os dados para o formato correto.
+            const urlSearchParams = new URLSearchParams();
+            for (const pair of formData.entries()) {
+                urlSearchParams.append(pair[0], pair[1]);
+            }
+
+            // Envia os dados usando Fetch API
+            fetch(googleFormsUrl, {
+                method: 'POST',
+                mode: 'no-cors', // Importante para evitar erros CORS, já que estamos enviando para um domínio diferente
+                body: urlSearchParams, // Os dados no formato URL-encoded
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded' // Indica o tipo de conteúdo
+                }
+            })
+            .then(response => {
+                // A resposta de 'no-cors' mode é opaca, então não podemos verificar o status HTTP diretamente.
+                // Mas se a requisição for bem-sucedida (não houver erro de rede), geralmente significa que o Google Forms a recebeu.
+                console.log('Dados enviados para o Google Forms!');
+                alert('Sua proposta foi enviada com sucesso! Em breve entraremos em contato.'); // Mensagem de sucesso para o usuário
+
+                form.reset(); // Limpa o formulário após o envio
+                // Opcional: Redirecionar o usuário para uma página de "Obrigado!"
+                // window.location.href = '/obrigado.html';
+            })
+            .catch(error => {
+                console.error('Erro ao enviar dados para o Google Forms:', error);
+                alert('Ocorreu um erro ao enviar sua proposta. Por favor, tente novamente mais tarde.'); // Mensagem de erro
+            });
+        });
+    });
+
     </script>
 </body>
 </html>

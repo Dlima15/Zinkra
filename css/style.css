@@ -1,0 +1,277 @@
+    body {
+      background-color: #0B0B0F;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+    }
+
+
+
+    .navbar-nav .nav-link {
+      color: #000000;
+      margin-right: 1rem;
+    }
+
+    .nav-link:hover {
+      color: #8d8d8d;
+    }
+
+    .btn-primary-custom {
+      background-color: #fff;
+      color: #000;
+      font-weight: 500;
+      border-radius: 8px;
+      padding: 10px 20px;
+    }
+
+    .btn-dark-custom {
+      background-color: transparent;
+      color: #fff;
+      border: 1px solid #fff;
+      border-radius: 8px;
+      padding: 10px 20px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 100px;
+      padding-bottom: 60px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .hero h1 span {
+      text-decoration: underline;
+    }
+
+    .hero p {
+      margin-top: 1rem;
+      color: #bfbfbf;
+      font-size: 1rem;
+    }
+
+    .hero-buttons .btn {
+      margin-right: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .mockup-box {
+      background-color: #1e1e26;
+      border-radius: 16px;
+      padding: 40px;
+      color: #ccc;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .mockup-box {
+        margin-top: 2rem;
+      }
+    }
+
+
+    /* serviços seção xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
+    .servicos-section {
+  background-color: #0B0B0F;
+}
+
+.card-servico {
+  background-color: #1E1E26;
+  border-radius: 12px;
+  padding: 30px 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.card-servico:hover {
+  background-color: #2A2A35;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 255, 194, 0.1);
+}
+
+.card-servico .icon {
+  font-size: 2rem;
+}
+
+
+/* Quem somos xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
+
+.quem-somos-section {
+  background-color: #0B0B0F;
+}
+
+.img-box {
+  background-color: #1E1E26;
+  display: inline-block;
+  border-radius: 16px;
+}
+
+.quem-somos-section .bi {
+  font-size: 1.2rem;
+}
+
+
+/* port Folio xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
+
+.portfolio-section {
+  background-color: #0B0B0F;
+}
+
+.bg-secondary-subtle {
+  background-color: #2D2D38;
+}
+
+.bg-dark-subtle {
+  background-color: #1E1E26;
+}
+
+
+/* depoimentos xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
+
+.case-study-section {
+  background-color: #0B0B0F;
+}
+
+.metric-box {
+  background-color: #2C2F38;
+  box-shadow: 0 0 8px rgba(0, 255, 194, 0.05);
+}
+
+
+/* FORM xxxxxxxxxxxxxxxxxxxxxxxxxxxx */
+
+.budget-form-section {
+  background-color: #0B0B0F;
+}
+
+.form-card {
+  background-color: #1E1E26;
+  box-shadow: 0 0 10px rgba(0, 255, 194, 0.05);
+}
+
+.btn-outline-light {
+  border-color: #444;
+  color: #ffffff;
+}
+
+.btn-outline-light:hover {
+  background-color: #00FFC2;
+  color: #0B0B0F;
+}
+
+
+/* Form papel tirar xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
+
+body {
+    background-color: #1a1a2e; /* Cor de fundo escura conforme a imagem */
+    font-family: Arial, sans-serif; /* Fonte genérica */
+}
+
+.contact-form-section {
+    min-height: 100vh; /* Garante que a seção ocupe a altura total da tela */
+    display: flex;
+    align-items: center; /* Centraliza verticalmente o conteúdo */
+    justify-content: center; /* Centraliza horizontalmente o conteúdo */
+}
+
+.form-card {
+    background-color: #2b2b3f; /* Cor do fundo do cartão do formulário */
+    color: #fff; /* Cor do texto dentro do cartão */
+}
+
+/* Estilo para os inputs */
+.form-control {
+    background-color: #3a3a52; /* Cor de fundo dos campos de input */
+    border: 1px solid #4f4f6c; /* Cor da borda dos campos de input */
+    color: #fff; /* Cor do texto digitado */
+}
+
+.form-control::placeholder {
+    color: #b0b0c0; /* Cor do placeholder */
+    opacity: 1; /* Garante que o placeholder seja visível */
+}
+
+.form-control:focus {
+    background-color: #3a3a52; /* Mantém a cor de fundo no focus */
+    border-color: #6a6a8c; /* Cor da borda no focus */
+    box-shadow: 0 0 0 0.25rem rgba(106, 106, 140, 0.25); /* Sombra suave no focus */
+    color: #fff; /* Cor do texto digitado no focus */
+}
+
+/* Estilo para o botão "Enviar Mensagem" */
+.btn-light {
+    background-color: #f8f9fa; /* Cor de fundo do botão claro */
+    color: #212529; /* Cor do texto do botão claro */
+    border-color: #f8f9fa; /* Cor da borda do botão claro */
+}
+
+.btn-light:hover {
+    background-color: #e2e6ea; /* Cor de fundo no hover */
+    border-color: #dae0e5; /* Cor da borda no hover */
+    color: #212529;
+}
+
+/* Estilo para o botão "Chamar no WhatsApp" */
+.btn-whatsapp {
+    background-color: #4f4f6c; /* Cor de fundo similar à da imagem */
+    color: #fff; /* Cor do texto */
+    border: 1px solid #4f4f6c; /* Borda da mesma cor */
+}
+
+.btn-whatsapp:hover {
+    background-color: #6a6a8c; /* Cor de fundo no hover */
+    border-color: #6a6a8c; /* Cor da borda no hover */
+    color: #fff;
+}
+
+/* Ajustes para responsividade dos botões */
+@media (max-width: 767.98px) {
+    .d-md-flex {
+        flex-direction: column; /* Empilha os botões em telas pequenas */
+    }
+    .btn-lg {
+        width: 100%; /* Botões ocupam 100% da largura em telas pequenas */
+    }
+}
+
+
+/* footer xxxxxxxxxxxxxxxxxxxxxxxxxxxx*/ 
+
+/* Footer Styles */
+.footer {
+    background-color: #1a1a2e; /* Mesma cor de fundo do body para integrar */
+    color: #fff;
+    border-top: 1px solid #2b2b3f; /* Uma linha sutil para separar do conteúdo acima */
+}
+
+.footer .text-white-50 {
+    color: rgba(255, 255, 255, 0.5) !important; /* Cor do texto de copyright, mais suave */
+}
+
+.footer .social-icons a {
+    color: #fff; /* Cor dos ícones sociais */
+    transition: color 0.3s ease; /* Transição suave para o hover */
+}
+
+.footer .social-icons a:hover {
+    color: #0d6efd; /* Cor no hover (exemplo: azul do Bootstrap, você pode mudar) */
+}

@@ -2,10 +2,445 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zinkra | Desenvolvimento de Sites e Sistemas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ZINKRA - Home</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Estilo Customizado -->
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-  Em Desenvolvimento 
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-dark-subtle py-3 fixed-top">
+    <div class="container">
+      <a class="navbar-brand text-black fw-bold" class="Logo" href="#">ZINKRA</a>
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Serviços</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Portfólio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contato</a></li>
+          <li class="nav-item ms-3"><a class="nav-link fw-bold text-white" href="#">Solicitar Orçamento</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero container d-flex flex-lg-row flex-column justify-content-between align-items-center">
+    <div class="hero-text col-lg-6">
+      <h1>
+        Sites e Sistemas<br>
+        que <span>Automatizam,</span><br>
+        <span>Controlam</span> e <span>Convertem.</span>
+      </h1>
+      <p>Desenvolvemos soluções digitais que otimizam o dia a dia da sua empresa e aumentam seus resultados.</p>
+      <div class="hero-buttons d-flex">
+        <a href="#" class="btn btn-primary-custom">
+          <i class="bi bi-rocket"></i> Solicitar Orçamento
+        </a>
+        <a href="#" class="btn btn-dark-custom">
+          <i class="bi bi-eye"></i> Ver Portfólio
+        </a>
+      </div>
+    </div>
+    <div class="mockup-box col-lg-5 mt-4 mt-lg-0">
+      Dashboard Responsivo Mockup
+    </div>
+  </section>
+  <section class="py-5 servicos-section text-white">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-2">Soluções digitais sob medida para empresas que querem crescer</h2>
+    <p class="mb-5 text-white">Do site institucional ao sistema que automatiza seu negócio.</p>
+
+    <div class="row g-4">
+      <!-- Card 1 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card-servico h-100">
+          <div class="icon mb-2">🌐</div>
+          <h5 class="fw-bold">Sites Institucionais</h5>
+          <p class="text-white">Presença digital com visual moderno e SEO.</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card-servico h-100">
+          <div class="icon mb-2">🛠️</div>
+          <h5 class="fw-bold">Sistemas Sob Demanda</h5>
+          <p class=".text-white">Ferramentas personalizadas para automatizar processos.</p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card-servico h-100">
+          <div class="icon mb-2">🛒</div>
+          <h5 class="fw-bold">E-commerces Inteligentes</h5>
+          <p class="text-white">Estrutura de vendas online com checkout rápido.</p>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card-servico h-100">
+          <div class="icon mb-2">🎯</div>
+          <h5 class="fw-bold">Landing Pages Estratégicas</h5>
+          <p class="text-white">Páginas focadas em conversão de leads.</p>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card-servico h-100">
+          <div class="icon mb-2">🔌</div>
+          <h5 class="fw-bold">Integrações</h5>
+          <p class="text-white">APIs, WhatsApp, meios de pagamento e CRMs.</p>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card-servico h-100">
+          <div class="icon mb-2">🎨</div>
+          <h5 class="fw-bold">UX/UI Design</h5>
+          <p class="text-white">Experiências visuais impactantes e responsivas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="quem-somos-section py-5 text-white">
+  <div class="container">
+    <div class="row align-items-center gy-4">
+      
+      <!-- Texto -->
+      <div class="col-lg-7">
+        <h2 class="fw-bold mb-3">A Zinkra vai além do código.</h2>
+        <p class="mb-4 text-white">
+          A Zinkra é uma iniciativa de Danilo Lima Cruz, criador de soluções como VIP Náutica e Alerta SP.
+          Atuamos com sites e sistemas que entregam resultado de verdade, com processos ágeis, suporte direto e visual de primeira.
+        </p>
+
+        <ul class="list-unstyled">
+          <li class="mb-3 d-flex align-items-center">
+            <i class="bi bi-clock-fill me-2 text-success"></i> <span>Entregas rápidas</span>
+          </li>
+          <li class="mb-3 d-flex align-items-center">
+            <i class="bi bi-chat-dots-fill me-2 text-info"></i> <span>Suporte humano direto</span>
+          </li>
+          <li class="mb-3 d-flex align-items-center">
+            <i class="bi bi-rocket-fill me-2 text-warning"></i> <span>Foco em performance real</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Imagem -->
+      <div class="col-lg-5 text-center">
+        <div class="img-box p-4 rounded">
+          <img src="https://cdn-icons-png.flaticon.com/512/4333/4333609.png" alt="Ilustração Equipe" class="img-fluid" style="max-width: 180px;">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section class="portfolio-section py-5 text-white">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="fw-bold">Projetos com resultado e estética afiada</h2>
+      <p class="text-muted">Confira alguns dos nossos projetos que entregaram valor real.</p>
+    </div>
+
+    <div id="portfolioCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+          <div class="card bg-dark-subtle border-0 rounded-4 overflow-hidden mx-auto" style="max-width: 350px;">
+            <div class="bg-secondary-subtle text-center p-4 text-white">VIP Náutica Mockup</div>
+            <div class="p-4">
+              <h5 class="fw-bold">VIP Náutica</h5>
+              <p class="text-muted small">Site responsivo, visual refinado, +80% de leads.</p>
+              <a href="#" class="btn btn-outline-light btn-sm">
+                <i class="bi bi-link-45deg me-1"></i> Ver Projeto
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+          <div class="card bg-dark-subtle border-0 rounded-4 overflow-hidden mx-auto" style="max-width: 350px;">
+            <div class="bg-secondary-subtle text-center p-4 text-white">Clínica Odonto Mockup</div>
+            <div class="p-4">
+              <h5 class="fw-bold">Clínica Odonto</h5>
+              <p class="text-muted small">Sistema com agendamentos automáticos.</p>
+              <a href="#" class="btn btn-outline-light btn-sm">
+                <i class="bi bi-link-45deg me-1"></i> Ver Projeto
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item">
+          <div class="card bg-dark-subtle border-0 rounded-4 overflow-hidden mx-auto" style="max-width: 350px;">
+            <div class="bg-secondary-subtle text-center p-4 text-white">UrbanStore Mockup</div>
+            <div class="p-4">
+              <h5 class="fw-bold">UrbanStore</h5>
+              <p class="text-muted small">E-commerce com foco em performance.</p>
+              <a href="#" class="btn btn-outline-light btn-sm">
+                <i class="bi bi-link-45deg me-1"></i> Ver Projeto
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Controles -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#portfolioCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#portfolioCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Próximo</span>
+      </button>
+    </div>
+  </div>
+</section>
+<section class="testimonials-section py-5 text-white">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="fw-bold">O que dizem sobre a Zinkra</h2>
+    </div>
+
+    <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+
+        <!-- Depoimento 1 -->
+        <div class="carousel-item active">
+          <div class="d-flex justify-content-center">
+            <div class="card testimonial-card mx-2">
+              <div class="card-body">
+                <h6 class="fw-bold mb-1">Maria L.</h6>
+                <p class="small text-muted mb-1">UrbanStore</p>
+                <p class="fst-italic">"O site ficou incrível e impulsionou nossas vendas."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Depoimento 2 -->
+        <div class="carousel-item">
+          <div class="d-flex justify-content-center">
+            <div class="card testimonial-card mx-2">
+              <div class="card-body">
+                <h6 class="fw-bold mb-1">Carlos A.</h6>
+                <p class="small text-muted mb-1">Clínica Odonto</p>
+                <p class="fst-italic">"Sistema ágil e suporte nota 10."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Depoimento 3 -->
+        <div class="carousel-item">
+          <div class="d-flex justify-content-center">
+            <div class="card testimonial-card mx-2">
+              <div class="card-body">
+                <h6 class="fw-bold mb-1">Thiago R.</h6>
+                <p class="small text-muted mb-1">VIP Náutica</p>
+                <p class="fst-italic">"Recebemos 80% mais leads após o novo site."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Controles -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Próximo</span>
+      </button>
+    </div>
+  </div>
+</section>
+<section class="case-study-section py-5 text-white">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="fw-bold">Deixa eu te mostrar os números.</h2>
+    </div>
+
+    <div class="row justify-content-center bg-dark rounded-4 p-4 mx-1 mx-md-0">
+      <!-- Coluna: Texto do case -->
+      <div class="col-md-6 mb-4 mb-md-0">
+        <div class="p-2">
+          <p class="fw-bold mb-1">Cliente: VIP Náutica</p>
+          <p><strong>Problema:</strong><br>Site lento e sem conversão</p>
+          <p><strong>Solução:</strong><br>Redesign completo + SEO + formulário inteligente</p>
+        </div>
+      </div>
+
+      <!-- Coluna: Métricas -->
+      <div class="col-md-6 d-flex flex-column justify-content-center gap-3">
+        <div class="metric-box text-center text-white rounded-3 py-3">
+          <h4 class="fw-bold mb-0">+80%</h4>
+          <small class="text-muted">de leads</small>
+        </div>
+        <div class="metric-box text-center text-white rounded-3 py-3">
+          <h4 class="fw-bold mb-0">-35%</h4>
+          <small class="text-muted">no tempo de carregamento</small>
+        </div>
+        <div class="metric-box text-center text-white rounded-3 py-3">
+          <h4 class="fw-bold mb-0">+20%</h4>
+          <small class="text-muted">tempo médio no site</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="budget-form-section py-5 text-white">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="fw-bold">Receba sua proposta personalizada</h2>
+      <p class="text-muted">Responda algumas perguntas rápidas e receba um orçamento sob medida.</p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <div class="form-card bg-dark p-4 rounded-4">
+          <small class="text-muted">Pergunta 1 de 4</small>
+          <div class="progress mb-3" style="height: 4px;">
+            <div class="progress-bar bg-success" style="width: 25%;"></div>
+          </div>
+
+          <form>
+            <!-- Tipo de projeto -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Tipo de projeto:</label>
+              <div class="d-grid gap-2 d-md-block">
+                <button type="button" class="btn btn-outline-light mb-2 me-2">Site</button>
+                <button type="button" class="btn btn-outline-light mb-2 me-2">Sistema</button>
+                <button type="button" class="btn btn-outline-light mb-2 me-2">E-commerce</button>
+                <button type="button" class="btn btn-outline-light mb-2">Outro</button>
+              </div>
+            </div>
+
+            <!-- Domínio/hospedagem -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Já possui domínio/hospedagem?</label>
+              <div class="d-grid gap-2 d-md-block">
+                <button type="button" class="btn btn-outline-light mb-2 me-2">Sim</button>
+                <button type="button" class="btn btn-outline-light mb-2 me-2">Não</button>
+                <button type="button" class="btn btn-outline-light mb-2">Não sei</button>
+              </div>
+            </div>
+
+            <!-- Orçamento estimado -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Orçamento estimado:</label>
+              <div class="d-grid gap-2">
+                <button type="button" class="btn btn-outline-light">Até R$1.000</button>
+                <button type="button" class="btn btn-outline-light">R$1.000 – R$3.000</button>
+                <button type="button" class="btn btn-outline-light">R$3.000 – R$5.000</button>
+                <button type="button" class="btn btn-outline-light">Acima de R$5.000</button>
+              </div>
+            </div>
+
+            <!-- Descrição -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Descrição da ideia:</label>
+              <textarea class="form-control bg-dark text-white border-secondary" rows="4" placeholder="Conte-nos sobre seu projeto..."></textarea>
+            </div>
+
+            <!-- Botão final -->
+            <button type="submit" class="btn btn-light w-100 mt-3">
+              <i class="bi bi-send"></i> Receber Proposta
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ <section class="contact-form-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="text-white fw-bold">Vamos tirar seu projeto do papel?</h2>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="form-card p-4 rounded-4">
+                        <form>
+                            <div class="row mb-3">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <input type="text" class="form-control" placeholder="Nome completo" aria-label="Nome completo">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" placeholder="E-mail" aria-label="E-mail">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="WhatsApp" aria-label="WhatsApp">
+                            </div>
+                            <div class="mb-4">
+                                <textarea class="form-control" placeholder="Mensagem" rows="5" aria-label="Mensagem"></textarea>
+                            </div>
+
+                            <div class="d-grid gap-3 d-md-flex justify-content-center">
+                                <button type="submit" class="btn btn-light btn-lg flex-grow-1">
+                                    <i class="bi bi-send me-2"></i> Enviar Mensagem
+                                </button>
+                                <a href="https://wa.me/SEUNUMERO" target="_blank" class="btn btn-whatsapp btn-lg flex-grow-1">
+                                    <i class="bi bi-whatsapp me-2"></i> Chamar no WhatsApp
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </section>
+   <footer class="footer py-4">
+        <div class="container text-center">
+            <p class="mb-0 text-white-50">&copy; 2025 Zinkra Todos os direitos reservados.</p>
+            <div class="social-icons mt-3">
+                <a href="#" class="text-white mx-2"><i class="bi bi-instagram fs-4"></i></a>
+                <a href="#" class="text-white mx-2"><i class="bi bi-linkedin fs-4"></i></a>
+                <a href="#" class="text-white mx-2"><i class="bi bi-facebook fs-4"></i></a>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Bootstrap Icons (opcional) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </body>
 </html>

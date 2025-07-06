@@ -337,6 +337,15 @@ section p.text-muted {
     font-weight: bold;
 }
 
+.portfolio-section .card-img-placeholder img {
+    max-width: 100%; /* Garante que a imagem não exceda a largura do contêiner */
+    height: 100%; /* Ajusta a altura da imagem para preencher o contêiner */
+    object-fit: contain; /* Redimensiona a imagem para caber completamente dentro do contêiner, mantendo sua proporção */
+    /* 'contain' garante que a imagem inteira seja visível, adicionando barras de espaço se necessário */
+    /* Se quiser que a imagem preencha o espaço cortando as bordas, use 'cover' */
+}
+
+
 /* Depoimentos */
 .testimonials-section .testimonial-card {
     background-color: var(--card-bg);
@@ -582,7 +591,7 @@ section p.text-muted {
     }
 
     /* As animações de scroll (`fade-in-up`) ainda são aplicadas.
-       Você pode desativá-las completamente para mobile se quiser:
+        Você pode desativá-las completamente para mobile se quiser:
     .animate-on-scroll {
         animation: none !important;
         opacity: 1 !important;

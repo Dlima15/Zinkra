@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-br" data-bs-theme="dark"> <head>
+<html lang="pt-br" data-bs-theme="dark">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ZINKRA - Home</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -22,26 +19,28 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-center">
-                    <li class="nav-item animate-on-load" style="animation-delay: 0.1s;"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item animate-on-load" style="animation-delay: 0.2s;"><a class="nav-link" href="#">Serviços</a></li>
-                    <li class="nav-item animate-on-load" style="animation-delay: 0.3s;"><a class="nav-link" href="#">Portfólio</a></li>
-                    <li class="nav-item animate-on-load" style="animation-delay: 0.4s;"><a class="nav-link" href="#">Contato</a></li>
+                    <li class="nav-item animate-on-load" style="animation-delay: 0.1s;"><a class="nav-link" href="#hero">Home</a></li>
+                    <li class="nav-item animate-on-load" style="animation-delay: 0.2s;"><a class="nav-link" href="#servicos">Serviços</a></li>
+                    <li class="nav-item animate-on-load" style="animation-delay: 0.3s;"><a class="nav-link" href="#portfolio">Portfólio</a></li>
+                    <li class="nav-item animate-on-load" style="animation-delay: 0.4s;"><a class="nav-link" href="#contato">Contato</a></li>
                     <li class="nav-item ms-lg-3 animate-on-load" style="animation-delay: 0.5s;">
-                        <a class="nav-link fw-bold btn btn-custom-outline" href="#">
+                        <a class="nav-link fw-bold btn btn-custom-outline" href="#orcamento">
                             <i class="bi bi-rocket me-2"></i> Solicitar Orçamento
                         </a>
                     </li>
                     <li class="nav-item ms-lg-3">
                         <button class="btn btn-link nav-link theme-toggle" id="themeToggle">
-                            <i class="bi bi-sun-fill fs-5"></i> </button>
+                            <i class="bi bi-sun-fill fs-5"></i>
+                        </button>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <section class="hero container d-flex flex-lg-row flex-column justify-content-between align-items-center vh-100 position-relative overflow-hidden">
-        <div class="background-animation"></div> <div class="hero-text col-lg-6 z-1">
+    <section class="hero container d-flex flex-lg-row flex-column justify-content-between align-items-center vh-100 position-relative overflow-hidden" id="hero">
+        <div class="background-animation"></div>
+        <div class="hero-text col-lg-6 z-1">
             <h1 class="animate-on-scroll" style="animation-delay: 0s;">
                 Sites e Sistemas<br>
                 que <span>Automatizam,</span><br>
@@ -49,10 +48,10 @@
             </h1>
             <p class="animate-on-scroll" style="animation-delay: 0.2s;">Desenvolvemos soluções digitais que otimizam o dia a dia da sua empresa e aumentam seus resultados.</p>
             <div class="hero-buttons d-flex gap-3 mt-4">
-                <a href="#" class="btn btn-primary-custom animate-on-scroll" style="animation-delay: 0.4s;">
+                <a href="#orcamento" class="btn btn-primary-custom animate-on-scroll" style="animation-delay: 0.4s;">
                     <i class="bi bi-rocket"></i> Solicitar Orçamento
                 </a>
-                <a href="#" class="btn btn-outline-custom animate-on-scroll" style="animation-delay: 0.6s;">
+                <a href="#portfolio" class="btn btn-outline-custom animate-on-scroll" style="animation-delay: 0.6s;">
                     <i class="bi bi-eye"></i> Ver Portfólio
                 </a>
             </div>
@@ -62,7 +61,7 @@
         </div>
     </section>
 
-    <section class="py-5 servicos-section">
+    <section class="py-5 servicos-section" id="servicos">
         <div class="container text-center">
             <h2 class="fw-bold mb-2 animate-on-scroll">Soluções digitais sob medida para empresas que querem crescer</h2>
             <p class="mb-5 animate-on-scroll" style="animation-delay: 0.1s;">Do site institucional ao sistema que automatiza seu negócio.</p>
@@ -143,7 +142,7 @@
                 </div>
 
                 <div class="col-lg-5 text-center animate-on-scroll" style="animation-delay: 0.4s;">
-                    <div class="img-box p-4 rounded animate-pulse-hover">
+                    <div class="img-box p-4 rounded-4 animate-pulse-hover">
                         <img src="./images/490267131_18349208041144372_8913110137956979393_n.jpg" alt="Ilustração Equipe" class="img-fluid" style="max-width: 180px;">
                     </div>
                 </div>
@@ -151,62 +150,63 @@
         </div>
     </section>
 
-```html
- <section class="portfolio-section py-5">
+    <section class="portfolio-section py-5" id="portfolio">
         <div class="container">
             <div class="text-center mb-4 animate-on-scroll">
                 <h2 class="fw-bold">Projetos com resultado e estética afiada</h2>
                 <p class="text-muted">Confira alguns dos nossos projetos que entregaram valor real.</p>
             </div>
 
-            <div id="portfolioCarousel" class="carousel slide animate-on-scroll" data-bs-ride="carousel" style="animation-delay: 0.1s;">
-                <div class="carousel-inner">
-
+            <div id="portfolioCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner animate-on-scroll" style="animation-delay: 0.1s;">
                     <div class="carousel-item active">
-                        <div class="card custom-card border-0 rounded-4 overflow-hidden mx-auto animate-scale-hover" style="max-width: 350px;">
-                            <div class="card-img-placeholder text-center p-4">
-                                <img src="./images/vip.png" alt="VIP Náutica">
-                            </div>
-                            <div class="card-body p-4">
-                                <h5 class="fw-bold">VIP Náutica</h5>
-                                <p class="text-muted small">Site responsivo, visual refinado, +80% de leads.</p>
-                                <a href="http://www.vipnautica.com.br" target="_blank" class="btn btn-outline-custom btn-sm">
-                                    <i class="bi bi-link-45deg me-1"></i> Ver Projeto
-                                </a>
+                        <div class="d-flex justify-content-center">
+                            <div class="card custom-card border-0 rounded-4 overflow-hidden mx-2 animate-scale-hover" style="max-width: 350px;">
+                                <div class="card-img-placeholder text-center p-4">
+                                    <img src="./images/vip.png" alt="VIP Náutica" class="img-fluid">
+                                </div>
+                                <div class="card-body p-4">
+                                    <h5 class="fw-bold">VIP Náutica</h5>
+                                    <p class="text-muted small">Site responsivo, visual refinado, +80% de leads.</p>
+                                    <a href="http://www.vipnautica.com.br" target="_blank" class="btn btn-outline-custom btn-sm">
+                                        <i class="bi bi-link-45deg me-1"></i> Ver Projeto
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                     <div class="carousel-item">
-                        <div class="card custom-card border-0 rounded-4 overflow-hidden mx-auto animate-scale-hover" style="max-width: 350px;">
-                            <div class="card-img-placeholder text-center p-4">
-                                <img src="./images/fin.png" alt="Finflow">
-                            </div>
-                            <div class="card-body p-4">
-                                <h5 class="fw-bold">Finflow</h5>
-                                <p class="text-muted small">Fintech Banco digital</p>
-                                <a href="https://fin-flow-snowy.vercel.app/" target="_blank" class="btn btn-outline-custom btn-sm">
-                                    <i class="bi bi-link-45deg me-1"></i> Ver Projeto
-                                </a>
+                        <div class="d-flex justify-content-center">
+                            <div class="card custom-card border-0 rounded-4 overflow-hidden mx-2 animate-scale-hover" style="max-width: 350px;">
+                                <div class="card-img-placeholder text-center p-4">
+                                    <img src="./images/fin.png" alt="Finflow" class="img-fluid">
+                                </div>
+                                <div class="card-body p-4">
+                                    <h5 class="fw-bold">Finflow</h5>
+                                    <p class="text-muted small">Fintech Banco digital</p>
+                                    <a href="https://fin-flow-snowy.vercel.app/" target="_blank" class="btn btn-outline-custom btn-sm">
+                                        <i class="bi bi-link-45deg me-1"></i> Ver Projeto
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                     <div class="carousel-item">
-                        <div class="card custom-card border-0 rounded-4 overflow-hidden mx-auto animate-scale-hover" style="max-width: 350px;">
-                            <div class="card-img-placeholder text-center p-4">
-                                <img src="./images/Sys.png" alt="VIPSyS - Sistema completo de atendimento de clientes">
-                            </div>
-                            <div class="card-body p-4">
-                                <h5 class="fw-bold">VIPSyS - Sistema completo de atendimento de clientes</h5>
-                                <p class="text-muted small">E-commerce com foco em performance.</p>
-                                <a href="https://vendasvip.vercel.app/" target="_blank" class="btn btn-outline-custom btn-sm">
-                                    <i class="bi bi-link-45deg me-1"></i> Ver Projeto
-                                </a>
+                        <div class="d-flex justify-content-center">
+                            <div class="card custom-card border-0 rounded-4 overflow-hidden mx-2 animate-scale-hover" style="max-width: 350px;">
+                                <div class="card-img-placeholder text-center p-4">
+                                    <img src="./images/Sys.png" alt="VIPSyS" class="img-fluid">
+                                </div>
+                                <div class="card-body p-4">
+                                    <h5 class="fw-bold">VIPSyS - Sistema completo de atendimento de clientes</h5>
+                                    <p class="text-muted small">E-commerce com foco em performance.</p>
+                                    <a href="https://vendasvip.vercel.app/" target="_blank" class="btn btn-outline-custom btn-sm">
+                                        <i class="bi bi-link-45deg me-1"></i> Ver Projeto
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
                 <button class="carousel-control-prev" type="button" data-bs-target="#portfolioCarousel" data-bs-slide="prev">
@@ -221,16 +221,14 @@
         </div>
     </section>
 
-
     <section class="testimonials-section py-5">
         <div class="container">
             <div class="text-center mb-4 animate-on-scroll">
                 <h2 class="fw-bold">O que dizem sobre a Zinkra</h2>
             </div>
-
-            <div id="testimonialCarousel" class="carousel slide animate-on-scroll" data-bs-ride="carousel" style="animation-delay: 0.1s;">
-                <div class="carousel-inner">
-
+            
+            <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner animate-on-scroll" style="animation-delay: 0.1s;">
                     <div class="carousel-item active">
                         <div class="d-flex justify-content-center">
                             <div class="card testimonial-card mx-2 animate-scale-hover">
@@ -242,7 +240,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="carousel-item">
                         <div class="d-flex justify-content-center">
                             <div class="card testimonial-card mx-2 animate-scale-hover">
@@ -254,7 +251,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="carousel-item">
                         <div class="d-flex justify-content-center">
                             <div class="card testimonial-card mx-2 animate-scale-hover">
@@ -266,9 +262,7 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
                 <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Anterior</span>
@@ -314,69 +308,70 @@
         </div>
     </section>
 
-<section class="budget-form-section py-5">
-    <div class="container">
-        <div class="text-center mb-4 animate-on-scroll">
-            <h2 class="fw-bold">Receba sua proposta personalizada</h2>
-            <p class="text-muted">Responda algumas perguntas rápidas e receba um orçamento sob medida.</p>
-        </div>
+    <section class="budget-form-section py-5" id="orcamento">
+        <div class="container">
+            <div class="text-center mb-4 animate-on-scroll">
+                <h2 class="fw-bold">Receba sua proposta personalizada</h2>
+                <p class="text-muted">Responda algumas perguntas rápidas e receba um orçamento sob medida.</p>
+            </div>
 
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6 animate-on-scroll" style="animation-delay: 0.1s;">
-                <div class="form-card custom-card p-4 rounded-4">
-                    <small class="text-muted">Pergunta 1 de 4</small>
-                    <div class="progress mb-3" style="height: 4px;">
-                        <div class="progress-bar custom-bg-primary" style="width: 25%;"></div>
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6 animate-on-scroll" style="animation-delay: 0.1s;">
+                    <div class="form-card custom-card p-4 rounded-4">
+                        <small class="text-muted">Pergunta 1 de 4</small>
+                        <div class="progress mb-3" style="height: 4px;">
+                            <div class="progress-bar custom-bg-primary" style="width: 25%;"></div>
+                        </div>
+
+                        <form id="budgetForm" method="POST">
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Tipo de projeto:</label>
+                                <select name="entry.1836656458" class="form-select custom-select-btn animate-scale-hover" required>
+                                    <option value="" disabled selected>Selecione uma opção</option>
+                                    <option value="Site">Site</option>
+                                    <option value="Sistema">Sistema</option>
+                                    <option value="E-commerce">E-commerce</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Já possui domínio/hospedagem?</label>
+                                <select name="entry.2056863859" class="form-select custom-select-btn animate-scale-hover" required>
+                                    <option value="" disabled selected>Selecione uma opção</option>
+                                    <option value="Sim">Sim</option>
+                                    <option value="Não">Não</option>
+                                    <option value="Não sei">Não sei</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Orçamento estimado:</label>
+                                <select name="entry.1798839420" class="form-select custom-select-btn animate-scale-hover" required>
+                                    <option value="" disabled selected>Selecione uma opção</option>
+                                    <option value="Até R$1.000,00">Até R$1.000</option>
+                                    <option value="R$1.000,00 – R$3.000,00">R$1.000 – R$3.000</option>
+                                    <option value="R$3.000,00 – R$5.000,00">R$3.000 – R$5.000</option>
+                                    <option value="Acima de R$5.000,00">Acima de R$5.000</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Descrição da ideia:</label>
+                                <textarea name="entry.1243384291" class="form-control animate-scale-hover" rows="4" placeholder="Conte-nos sobre seu projeto..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary-custom w-100 mt-3 animate-pulse-hover">
+                                <i class="bi bi-send"></i> Receber Proposta
+                            </button>
+                        </form>
                     </div>
-
-                    <form id="budgetForm" method="POST"> <div class="mb-3">
-                            <label class="form-label fw-semibold">Tipo de projeto:</label>
-                            <select name="entry.1836656458" class="form-select custom-select-btn animate-scale-hover" required>
-                                <option value="" disabled selected>Selecione uma opção</option>
-                                <option value="Site">Site</option>
-                                <option value="Sistema">Sistema</option>
-                                <option value="E-commerce">E-commerce</option>
-                                <option value="Outro">Outro</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Já possui domínio/hospedagem?</label>
-                            <select name="entry.2056863859" class="form-select custom-select-btn animate-scale-hover" required>
-                                <option value="" disabled selected>Selecione uma opção</option>
-                                <option value="Sim">Sim</option>
-                                <option value="Não">Não</option>
-                                <option value="Não sei">Não sei</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Orçamento estimado:</label>
-                            <select name="entry.1798839420" class="form-select custom-select-btn animate-scale-hover" required>
-                                <option value="" disabled selected>Selecione uma opção</option>
-                                <option value="Até R$1.000,00">Até R$1.000</option>
-                                <option value="R$1.000,00 – R$3.000,00">R$1.000 – R$3.000</option>
-                                <option value="R$3.000,00 – R$5.000,00">R$3.000 – R$5.000</option>
-                                <option value="Acima de R$5.000,00">Acima de R$5.000</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Descrição da ideia:</label>
-                            <textarea name="entry.1243384291" class="form-control animate-scale-hover" rows="4" placeholder="Conte-nos sobre seu projeto..." required></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary-custom w-100 mt-3 animate-pulse-hover">
-                            <i class="bi bi-send"></i> Receber Proposta
-                        </button>
-
-                    </form>
-                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-    <section class="contact-form-section py-5">
+    </section>
+
+    <section class="contact-form-section py-5" id="contato">
         <div class="container">
             <div class="text-center mb-5 animate-on-scroll">
                 <h2 class="fw-bold">Vamos tirar seu projeto do papel?</h2>
@@ -385,29 +380,37 @@
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6 animate-on-scroll" style="animation-delay: 0.1s;">
                     <div class="form-card custom-card p-4 rounded-4">
-                        <form>
+                        <form id="whatsappForm">
                             <div class="row mb-3">
                                 <div class="col-md-6 mb-3 mb-md-0">
-                                    <input type="text" class="form-control" placeholder="Nome completo" aria-label="Nome completo">
+                                    <input type="text" class="form-control" id="nome" placeholder="Nome completo" aria-label="Nome completo" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="email" class="form-control" placeholder="E-mail" aria-label="E-mail">
+                                    <input type="email" class="form-control" id="email" placeholder="E-mail" aria-label="E-mail" required>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <input type="text" class="form-control" placeholder="WhatsApp" aria-label="WhatsApp">
+                                <input type="tel" class="form-control" id="whatsapp" placeholder="WhatsApp (com DDD)" aria-label="WhatsApp" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="tipoProjeto" class="form-label fw-semibold">Tipo de Projeto:</label>
+                                <select class="form-select custom-select-btn" id="tipoProjeto" required>
+                                    <option value="" disabled selected>Selecione o tipo de projeto</option>
+                                    <option value="Site Institucional">Site Institucional</option>
+                                    <option value="Sistema Web">Sistema Web</option>
+                                    <option value="E-commerce">E-commerce</option>
+                                    <option value="Landing Page">Landing Page</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
                             </div>
                             <div class="mb-4">
-                                <textarea class="form-control" placeholder="Mensagem" rows="5" aria-label="Mensagem"></textarea>
+                                <textarea class="form-control" id="mensagem" placeholder="Detalhes do seu projeto" rows="5" aria-label="Mensagem" required></textarea>
                             </div>
 
                             <div class="d-grid gap-3 d-md-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary-custom btn-lg flex-grow-1 animate-pulse-hover">
-                                    <i class="bi bi-send me-2"></i> Enviar Mensagem
+                                <button type="submit" class="btn btn-whatsapp-custom btn-lg w-100 animate-pulse-hover">
+                                    <i class="bi bi-whatsapp me-2"></i> Gerar Mensagem no WhatsApp
                                 </button>
-                                <a href="https://wa.me/SEUNUMERO" target="_blank" class="btn btn-whatsapp-custom btn-lg flex-grow-1 animate-pulse-hover">
-                                    <i class="bi bi-whatsapp me-2"></i> Chamar no WhatsApp
-                                </a>
                             </div>
                         </form>
                     </div>
@@ -431,12 +434,12 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Script de alternância de tema
             const themeToggle = document.getElementById('themeToggle');
             const htmlElement = document.documentElement;
             const sunIcon = '<i class="bi bi-sun-fill fs-5"></i>';
             const moonIcon = '<i class="bi bi-moon-fill fs-5"></i>';
 
-            // Set initial icon based on current theme
             function setInitialIcon() {
                 if (htmlElement.getAttribute('data-bs-theme') === 'dark') {
                     themeToggle.innerHTML = sunIcon;
@@ -461,16 +464,16 @@
             const animateOnLoadElements = document.querySelectorAll('.animate-on-load');
 
             const observerOptions = {
-                root: null, // viewport
+                root: null,
                 rootMargin: '0px',
-                threshold: 0.1 // 10% do elemento visível para disparar
+                threshold: 0.1
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('fade-in-up');
-                        observer.unobserve(entry.target); // Para de observar depois de animar
+                        observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
@@ -479,57 +482,68 @@
                 observer.observe(element);
             });
 
-            // Animação de entrada da Navbar e Hero Text (logo ao carregar)
             animateOnLoadElements.forEach(element => {
                 element.classList.add('fade-in-up');
             });
-        });
-        
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('budgetForm');
-        // A URL de envio do seu Google Forms (a mesma que você usou no 'action' antes)
-        const googleFormsUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSctRD3_K6smlCEa-feXEXvRvea37iJ__m58qkJlTYLuWUPjJw/formResponse';
 
-        form.addEventListener('submit', function(event) {
-            event.preventDefault(); // Impede o envio padrão do formulário (que abriria a nova aba)
+            // Script para o formulário de orçamento do Google Forms
+            const budgetForm = document.getElementById('budgetForm');
+            const googleFormsUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSctRD3_K6smlCEa-feXEXvRvea37iJ__m58qkJlTYLuWUPjJw/formResponse'; // Substitua pelo link real do seu formulário
 
-            // Coleta os dados do formulário
-            const formData = new FormData(form);
+            if (budgetForm) {
+                budgetForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
 
-            // Converte FormData para URL-encoded (formato que o Google Forms espera)
-            // FormData por si só envia multipart/form-data, mas o Google Forms espera application/x-www-form-urlencoded
-            // Precisamos reconstruir os dados para o formato correto.
-            const urlSearchParams = new URLSearchParams();
-            for (const pair of formData.entries()) {
-                urlSearchParams.append(pair[0], pair[1]);
+                    const formData = new FormData(budgetForm);
+                    const urlSearchParams = new URLSearchParams();
+                    for (const pair of formData.entries()) {
+                        urlSearchParams.append(pair[0], pair[1]);
+                    }
+
+                    fetch(googleFormsUrl, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        body: urlSearchParams,
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    })
+                    .then(() => {
+                        alert('Sua proposta foi enviada com sucesso! Em breve entraremos em contato.');
+                        budgetForm.reset();
+                    })
+                    .catch(error => {
+                        console.error('Erro ao enviar dados para o Google Forms:', error);
+                        alert('Ocorreu um erro ao enviar sua proposta. Por favor, tente novamente mais tarde.');
+                    });
+                });
             }
 
-            // Envia os dados usando Fetch API
-            fetch(googleFormsUrl, {
-                method: 'POST',
-                mode: 'no-cors', // Importante para evitar erros CORS, já que estamos enviando para um domínio diferente
-                body: urlSearchParams, // Os dados no formato URL-encoded
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded' // Indica o tipo de conteúdo
-                }
-            })
-            .then(response => {
-                // A resposta de 'no-cors' mode é opaca, então não podemos verificar o status HTTP diretamente.
-                // Mas se a requisição for bem-sucedida (não houver erro de rede), geralmente significa que o Google Forms a recebeu.
-                console.log('Dados enviados para o Google Forms!');
-                alert('Sua proposta foi enviada com sucesso! Em breve entraremos em contato.'); // Mensagem de sucesso para o usuário
+            // Script para o formulário de contato do WhatsApp
+            const whatsappForm = document.getElementById('whatsappForm');
+            if (whatsappForm) {
+                whatsappForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
 
-                form.reset(); // Limpa o formulário após o envio
-                // Opcional: Redirecionar o usuário para uma página de "Obrigado!"
-                // window.location.href = '/obrigado.html';
-            })
-            .catch(error => {
-                console.error('Erro ao enviar dados para o Google Forms:', error);
-                alert('Ocorreu um erro ao enviar sua proposta. Por favor, tente novamente mais tarde.'); // Mensagem de erro
-            });
+                    const nome = document.getElementById('nome').value;
+                    const email = document.getElementById('email').value;
+                    const whatsapp = document.getElementById('whatsapp').value;
+                    const tipoProjeto = document.getElementById('tipoProjeto').value;
+                    const mensagem = document.getElementById('mensagem').value;
+
+                    // Cria a mensagem formatada
+                    const mensagemFormatada = `Olá, vim pelo site da ZINKRA e gostaria de solicitar um orçamento.\n\n*Cliente:* ${nome}\n*E-mail:* ${email}\n*WhatsApp:* ${whatsapp}\n*Projeto:* ${tipoProjeto}\n*Detalhes:* ${mensagem}`;
+
+                    // Codifica a mensagem para a URL
+                    const mensagemCodificada = encodeURIComponent(mensagemFormatada);
+                    const numeroWhatsApp = '5511999999999'; // Substitua pelo seu número de WhatsApp com o código do país
+
+                    // Gera e abre o link do WhatsApp
+                    const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`;
+                    window.open(urlWhatsApp, '_blank');
+                });
+            }
         });
-    });
-
     </script>
 </body>
 </html>

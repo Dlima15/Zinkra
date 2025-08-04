@@ -1,3 +1,6 @@
+/* Importação de Fontes do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
 /* Variáveis CSS para o tema */
 :root {
     /* Cores do tema claro */
@@ -8,7 +11,7 @@
     --heading-color: #1a1a1a; /* Títulos mais escuros */
     --card-bg: #ffffff; /* Fundo dos cards claro */
     --card-border: #e0e0e0; /* Borda dos cards clara */
-    --navbar-bg: rgba(255, 255, 255, 0.9); /* Navbar semi-transparente claro */
+    --navbar-bg: rgba(255, 255, 255, 0.8); /* Navbar semi-transparente claro */
     --navbar-text: #333; /* Texto da navbar claro */
     --btn-primary-bg: var(--primary-color);
     --btn-primary-text: #fff;
@@ -22,19 +25,20 @@
     --form-input-text: #495057;
     --placeholder-color: #888;
     --progress-bar-color: var(--primary-color);
+    --hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
 }
 
 [data-bs-theme="dark"] {
     /* Cores do tema escuro */
-    --primary-color: #34D399; /* Mantém o verde vibrante */
+    --primary-color: #34D399;
     --secondary-color: #10B981;
-    --background-color: #1a1a2e; /* Fundo escuro */
-    --text-color: #e0e0e0; /* Texto claro */
-    --heading-color: #ffffff; /* Títulos brancos */
-    --card-bg: #2b2b3f; /* Fundo dos cards escuro */
-    --card-border: #3a3a52; /* Borda dos cards escura */
-    --navbar-bg: rgba(26, 26, 46, 0.9); /* Navbar semi-transparente escuro */
-    --navbar-text: #e0e0e0; /* Texto da navbar escuro */
+    --background-color: #1a1a2e;
+    --text-color: #e0e0e0;
+    --heading-color: #ffffff;
+    --card-bg: #2b2b3f;
+    --card-border: #3a3a52;
+    --navbar-bg: rgba(26, 26, 46, 0.8);
+    --navbar-text: #e0e0e0;
     --btn-primary-bg: var(--primary-color);
     --btn-primary-text: #fff;
     --btn-outline-border: var(--primary-color);
@@ -47,565 +51,324 @@
     --form-input-text: #fff;
     --placeholder-color: #b0b0c0;
     --progress-bar-color: var(--primary-color);
+    --hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Base Styles */
+/* Base e Tipografia */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
-    transition: background-color 0.5s ease, color 0.5s ease; /* Transição suave para mudança de tema */
-    overflow-x: hidden; /* Evita scroll horizontal */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
     color: var(--heading-color);
-}
-
-p {
-    color: var(--text-color);
-}
-
-/* Navbar */
-.custom-navbar {
-    background-color: var(--navbar-bg) !important;
-    backdrop-filter: blur(10px); /* Efeito de vidro fosco */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.5s ease, box-shadow 0.5s ease;
-}
-
-.custom-navbar .navbar-brand {
-    color: var(--primary-color) !important;
-    font-size: 1.8rem;
-    letter-spacing: 1px;
-}
-
-.custom-navbar .nav-link {
-    color: var(--navbar-text) !important;
-    font-weight: 500;
-    margin: 0 10px;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.custom-navbar .nav-link:hover {
-    color: var(--primary-color) !important;
-    transform: translateY(-2px);
-}
-
-.custom-navbar .custom-toggler {
-    border-color: var(--primary-color) !important;
-}
-
-.custom-navbar .custom-toggler .navbar-toggler-icon {
-    background-image: var(--bs-navbar-toggler-icon-bg); /* Bootstrap's default icon */
-    filter: invert(var(--navbar-text-filter)); /* Controla a cor do ícone do toggler */
-}
-/* Adjust toggler icon color for themes */
-[data-bs-theme="dark"] .custom-navbar .custom-toggler .navbar-toggler-icon {
-    filter: invert(1); /* White icon in dark mode */
-}
-[data-bs-theme="light"] .custom-navbar .custom-toggler .navbar-toggler-icon {
-    filter: invert(0); /* Black icon in light mode */
-}
-
-
-.btn-custom-outline {
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color) !important;
-    padding: 8px 20px;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-    font-weight: bold;
-}
-
-.btn-custom-outline:hover {
-    background-color: var(--primary-color);
-    color: var(--background-color) !important; /* Cor do fundo do body */
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 255, 0, 0.2);
-}
-
-.theme-toggle {
-    color: var(--navbar-text) !important;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.theme-toggle:hover {
-    color: var(--primary-color) !important;
-    transform: scale(1.1);
-}
-
-/* Hero Section */
-.hero {
-    min-height: 100vh;
-    padding-top: 100px; /* Ajuste para a navbar fixa */
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.hero h1 {
-    font-size: clamp(2.5rem, 5vw, 4.5rem); /* Tamanho responsivo */
-    line-height: 1.2;
     font-weight: 700;
-    margin-bottom: 20px;
 }
 
-.hero h1 span {
-    color: var(--primary-color);
-}
+h1 { font-size: calc(1.8rem + 1.5vw); }
+h2 { font-size: calc(1.5rem + 1vw); }
+p { font-size: 1rem; line-height: 1.6; }
 
-.hero p {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    max-width: 600px;
-}
+/* Utilitários */
+.text-primary-custom { color: var(--primary-color) !important; }
+.custom-bg-primary { background-color: var(--primary-color) !important; }
 
-.btn-primary-custom {
-    background-color: var(--primary-color);
-    color: var(--btn-primary-text);
-    border: none;
-    padding: 12px 30px;
-    border-radius: 50px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(52, 211, 153, 0.3);
-}
-
-.btn-primary-custom:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 8px 20px rgba(52, 211, 153, 0.4);
-}
-
-.btn-outline-custom {
-    background-color: transparent;
-    color: var(--primary-color) !important;
-    border: 2px solid var(--primary-color);
-    padding: 12px 30px;
-    border-radius: 50px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
-
-.btn-outline-custom:hover {
-    background-color: var(--primary-color);
-    color: var(--background-color) !important; /* Cor do fundo do body */
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 8px 20px rgba(52, 211, 153, 0.2);
-}
-
-.mockup-box {
-    background-color: var(--card-bg); /* Usar cor do card */
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 300px; /* Altura mínima para o mockup */
-    transition: background-color 0.5s ease, box-shadow 0.5s ease;
-}
-
-.mockup-box img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Background Animation for Hero Section */
-.hero .background-animation {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at top left, rgba(52, 211, 153, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at bottom right, rgba(26, 26, 46, 0.1) 0%, transparent 50%);
-    animation: backgroundMove 20s infinite alternate ease-in-out;
-    opacity: 0.7;
-    z-index: 0; /* Coloca a animação atrás do conteúdo */
-}
-
-@keyframes backgroundMove {
-    0% { transform: scale(1) translate(0, 0); }
-    100% { transform: scale(1.2) translate(10%, 10%); }
-}
-
-/* Seções Gerais */
-section {
-    padding: 80px 0;
-    transition: background-color 0.5s ease, color 0.5s ease;
-}
-
-section h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-section p.text-muted {
-    color: var(--text-muted-color) !important;
-}
-
-/* Seção de Serviços */
-.servicos-section {
-    background-color: var(--background-color);
-}
-
-.card-servico {
-    background-color: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    transition: all 0.3s ease;
-    height: 100%; /* Garante que os cards tenham a mesma altura */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.card-servico .icon {
-    font-size: 3rem;
-    margin-bottom: 15px;
-    color: var(--primary-color); /* Ícones com a cor primária */
-}
-
-.card-servico h5 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-.card-servico p {
-    font-size: 1rem;
-    color: var(--text-muted-color) !important; /* Ajuste para o texto nos cards */
-}
-
-/* Seção Quem Somos */
-.quem-somos-section {
-    background-color: var(--background-color);
-}
-
-.quem-somos-section .img-box {
-    background-color: var(--card-bg);
-    border: 1px solid var(--card-border);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-}
-
-.quem-somos-section .img-box img {
-    filter: grayscale(100%); /* Começa em preto e branco */
-    transition: filter 0.5s ease;
-}
-
-[data-bs-theme="dark"] .quem-somos-section .img-box img {
-    filter: grayscale(100%) brightness(1.2); /* Mais brilho no dark mode */
-}
-[data-bs-theme="light"] .quem-somos-section .img-box img {
-    filter: grayscale(0%); /* Colorido no light mode */
-}
-
-.quem-somos-section .list-unstyled li {
-    font-size: 1.1rem;
-    color: var(--text-color);
-}
-
-.quem-somos-section .list-unstyled i {
-    font-size: 1.5rem;
-}
-
-/* Seção Portfólio */
-.portfolio-section .custom-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--card-border);
-    transition: all 0.3s ease;
-}
-
-.portfolio-section .card-img-placeholder {
-    background-color: var(--card-border); /* Cor de fundo para o placeholder da imagem */
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-muted-color);
-    font-weight: bold;
-}
-
-.portfolio-section .card-img-placeholder img {
-    max-width: 100%; /* Garante que a imagem não exceda a largura do contêiner */
-    height: 100%; /* Ajusta a altura da imagem para preencher o contêiner */
-    object-fit: contain; /* Redimensiona a imagem para caber completamente dentro do contêiner, mantendo sua proporção */
-    /* 'contain' garante que a imagem inteira seja visível, adicionando barras de espaço se necessário */
-    /* Se quiser que a imagem preencha o espaço cortando as bordas, use 'cover' */
-}
-
-
-/* Depoimentos */
-.testimonials-section .testimonial-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 15px;
-    padding: 25px;
-    max-width: 400px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-}
-
-.testimonials-section .testimonial-card p.small {
-    color: var(--text-muted-color) !important;
-}
-.testimonials-section .testimonial-card p.fst-italic {
-    color: var(--text-color);
-}
-
-/* Case Study Section */
-.case-study-section .custom-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--card-border);
-    transition: all 0.3s ease;
-}
-
-.case-study-section .metric-box {
-    background-color: var(--card-border); /* Cor para os boxes de métricas */
-    border: 1px solid var(--card-border);
-    padding: 20px;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-}
-
-.case-study-section .metric-box h4 {
-    color: var(--primary-color) !important;
-}
-
-.case-study-section .metric-box small {
-    color: var(--text-muted-color) !important;
-}
-
-/* Formulários */
-.budget-form-section .form-card,
-.contact-form-section .form-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--card-border);
-    transition: background-color 0.5s ease, border-color 0.5s ease;
-}
-
-.budget-form-section .progress-bar,
-.contact-form-section .progress-bar {
-    background-color: var(--primary-color) !important;
-}
-
-.form-control {
-    background-color: var(--form-input-bg);
-    border: 1px solid var(--form-input-border);
-    color: var(--form-input-text);
-    transition: background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease;
-}
-
-.form-control::placeholder {
-    color: var(--placeholder-color);
-    opacity: 1;
-}
-
-.form-control:focus {
-    background-color: var(--form-input-bg);
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.25rem rgba(52, 211, 153, 0.25); /* Sombra do focus com a cor primária */
-    color: var(--form-input-text);
-}
-
-/* Botões do Formulário */
-/* Estilos para os novos campos select no formulário de orçamento */
-.custom-select-btn {
-    background-color: var(--form-input-bg); /* Usa a cor de fundo do input */
-    border: 1px solid var(--form-input-border); /* Borda padrão dos inputs */
-    color: var(--form-input-text); /* Cor do texto padrão dos inputs */
-    padding: 0.375rem 2.25rem 0.375rem 0.75rem; /* Padding do Bootstrap select */
-    border-radius: 0.375rem; /* Border-radius do Bootstrap select */
-    appearance: none; /* Remove a seta padrão do navegador */
-    -webkit-appearance: none; /* Para Webkit browsers */
-    -moz-appearance: none; /* Para Firefox */
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2334D399' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e"); /* Seta customizada */
-    background-repeat: no-repeat;
-    background-position: right 0.75rem center;
-    background-size: 16px 12px;
-    transition: all 0.3s ease; /* Para a animação de escala no hover */
-    width: 100%; /* Garante que o select ocupe toda a largura disponível */
-}
-
-/* Estilo para o hover, para manter a animação animate-scale-hover */
-.custom-select-btn:hover {
-    transform: scale(1.01); /* Leve aumento de escala no hover, menos que nos cards */
-    box-shadow: 0 4px 15px rgba(52, 211, 153, 0.1); /* Sombra sutil */
-    border-color: var(--primary-color);
-}
-
-.custom-select-btn:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.25rem rgba(52, 211, 153, 0.25);
-    outline: 0;
-}
-
-/* Cor das opções no tema escuro */
-[data-bs-theme="dark"] .custom-select-btn option {
-    background-color: var(--form-input-bg);
-    color: var(--form-input-text);
-}
-
-
-.budget-form-section .btn-outline-custom,
-.contact-form-section .btn-outline-custom {
-    color: var(--text-color) !important; /* Cor do texto padrão */
-    border-color: var(--form-input-border);
-    transition: all 0.3s ease;
-}
-
-.budget-form-section .btn-outline-custom:hover,
-.contact-form-section .btn-outline-custom:hover {
-    background-color: var(--primary-color);
-    color: #fff !important;
-    border-color: var(--primary-color);
-}
-
-.btn-whatsapp-custom {
-    background-color: var(--btn-whatsapp-bg);
-    color: var(--btn-whatsapp-text);
-    border: none;
-    padding: 12px 30px;
-    border-radius: 50px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-}
-
-.btn-whatsapp-custom:hover {
-    background-color: #1DA851; /* Um verde um pouco mais escuro no hover */
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
-}
-
-/* Footer */
-.footer {
-    background-color: var(--navbar-bg); /* Mesma cor da navbar para consistência */
-    border-top: 1px solid var(--card-border);
-    transition: background-color 0.5s ease, border-color 0.5s ease;
-}
-
-.footer .text-muted {
-    color: var(--text-muted-color) !important;
-}
-
-.footer .social-icons a {
-    color: var(--text-color); /* Cor dos ícones sociais */
-    transition: color 0.3s ease;
-}
-
-.footer .social-icons a:hover {
-    color: var(--primary-color); /* Cor no hover */
-}
-
-/* --- ANIMAÇÕES --- */
-
-/* Keyframes para Fade In Up */
+/* Animações */
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.fade-in-up {
-    animation: fadeInUp 0.8s ease-out forwards;
-}
-
-/* Animação para o Mockup (flutuar) */
 @keyframes float {
-    0% { transform: translateY(0px); }
+    0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
 }
 
-.animate-mockup-float {
-    animation: float 3s ease-in-out infinite;
+.animate-on-scroll, .animate-on-load {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-/* Animação de escala no hover para cards e botões */
-.animate-scale-hover {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.animate-scale-hover:hover {
-    transform: scale(1.03); /* Leve aumento de escala no hover */
-    box-shadow: 0 8px 25px rgba(52, 211, 153, 0.2); /* Sombra mais pronunciada */
-}
-
-/* Animação de pulse para botões principais */
-@keyframes pulse {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7); }
-    70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(52, 211, 153, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+.animate-on-scroll.fade-in-up, .animate-on-load.fade-in-up {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .animate-pulse-hover:hover {
     animation: pulse 1s infinite;
 }
 
-/* Animação para a imagem na seção "Quem Somos" */
-.quem-somos-section .img-box:hover img {
-    filter: grayscale(0%) !important; /* Retorna a cor no hover */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
 }
 
-/* Responsividade de Animações (ajustes se necessário) */
-@media (max-width: 768px) {
-    .hero {
+.animate-scale-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.animate-scale-hover:hover {
+    transform: scale(1.05);
+    box-shadow: var(--hover-shadow);
+}
+
+.animate-mockup-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Navbar */
+.custom-navbar {
+    backdrop-filter: blur(8px);
+    background-color: var(--navbar-bg);
+    border-bottom: 1px solid var(--card-border);
+    transition: background-color 0.3s ease, border-bottom-color 0.3s ease;
+}
+
+.custom-navbar .navbar-brand, .custom-navbar .nav-link {
+    color: var(--navbar-text);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.custom-navbar .nav-link:hover {
+    color: var(--primary-color);
+}
+
+.custom-toggler {
+    border-color: var(--card-border) !important;
+}
+
+.custom-toggler:focus {
+    box-shadow: none;
+}
+
+.custom-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%2334D399' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+[data-bs-theme="dark"] .custom-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%2334D399' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Hero Section */
+.hero {
+    padding-top: 100px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 span {
+    color: var(--primary-color);
+}
+
+.background-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    z-index: -1;
+    background: radial-gradient(circle at 0% 100%, var(--primary-color) 0%, transparent 50%), radial-gradient(circle at 100% 0%, var(--secondary-color) 0%, transparent 50%);
+    background-size: 80% 80%;
+    animation: background-pan 10s ease-in-out infinite alternate;
+}
+
+@keyframes background-pan {
+    0% { background-position: 0% 100%, 100% 0%; }
+    100% { background-position: 100% 0%, 0% 100%; }
+}
+
+.mockup-box {
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.2));
+}
+
+/* Botões */
+.btn-custom-outline, .btn-outline-custom {
+    color: var(--btn-outline-text);
+    border-color: var(--btn-outline-border);
+    transition: all 0.3s ease;
+}
+.btn-custom-outline:hover, .btn-outline-custom:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
+}
+
+.btn-primary-custom {
+    background-color: var(--primary-color);
+    color: var(--btn-primary-text);
+    border: 1px solid var(--primary-color);
+    transition: all 0.3s ease;
+}
+.btn-primary-custom:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.btn-whatsapp-custom {
+    background-color: var(--btn-whatsapp-bg);
+    color: var(--btn-whatsapp-text);
+    border: 1px solid var(--btn-whatsapp-bg);
+    transition: all 0.3s ease;
+}
+
+.btn-whatsapp-custom:hover {
+    background-color: #128C7E;
+    border-color: #128C7E;
+    transform: translateY(-2px);
+}
+
+.theme-toggle {
+    transition: color 0.3s ease;
+}
+
+.theme-toggle:hover {
+    color: var(--primary-color);
+}
+
+/* Seções */
+section {
+    padding: 60px 0;
+}
+
+/* Cards de Serviço */
+.card-servico {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.card-servico:hover {
+    box-shadow: var(--hover-shadow);
+    transform: translateY(-5px);
+}
+
+.card-servico .icon {
+    font-size: 3rem;
+    line-height: 1;
+}
+
+/* Quem Somos */
+.quem-somos-section .img-box {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+.quem-somos-section .img-box:hover {
+    box-shadow: var(--hover-shadow);
+}
+.quem-somos-section img {
+    border-radius: 50%;
+}
+
+/* Portfólio */
+.portfolio-section .custom-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.portfolio-section .card-img-placeholder img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    transition: transform 0.3s ease;
+}
+.portfolio-section .custom-card:hover .card-img-placeholder img {
+    transform: scale(1.05);
+}
+
+.carousel-control-prev, .carousel-control-next {
+    width: 5% !important;
+}
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    padding: 1rem;
+}
+
+/* Testemunhos */
+.testimonial-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    max-width: 400px;
+}
+
+/* Case Study */
+.case-study-section .metric-box {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+}
+.case-study-section .metric-box:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+/* Formulários */
+.form-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control, .form-select {
+    background-color: var(--form-input-bg);
+    border: 1px solid var(--form-input-border);
+    color: var(--form-input-text);
+    transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    box-shadow: 0 0 0 0.25rem rgba(52, 211, 153, 0.25);
+    border-color: var(--primary-color);
+    background-color: var(--form-input-bg);
+    color: var(--form-input-text);
+}
+
+.form-control::placeholder {
+    color: var(--placeholder-color);
+}
+
+.progress-bar {
+    background-color: var(--progress-bar-color);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--card-border);
+}
+
+.footer a {
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: var(--primary-color);
+}
+
+/* Responsividade */
+@media (max-width: 991px) {
+    .navbar-collapse {
         text-align: center;
-        flex-direction: column;
-    }
-    .hero .hero-buttons {
-        justify-content: center;
-        flex-direction: column;
-    }
-    .hero .hero-buttons .btn {
-        width: 100%;
-    }
-    .hero h1 {
-        font-size: clamp(2rem, 8vw, 3.5rem);
-    }
-    .hero p {
-        font-size: clamp(0.9rem, 3vw, 1.1rem);
-    }
-
-    /* Ocultar ou ajustar algumas animações para melhor performance em mobile */
-    .hero .background-animation {
-        opacity: 0.3; /* Menos intenso em mobile */
-        animation: none; /* Desativa a animação de movimento do fundo */
-    }
-
-    /* As animações de scroll (`fade-in-up`) ainda são aplicadas.
-        Você pode desativá-las completamente para mobile se quiser:
-    .animate-on-scroll {
-        animation: none !important;
-        opacity: 1 !important;
-        transform: none !important;
-    }
-    */
-}
-
-@media (max-width: 576px) {
-    .budget-form-section .btn-outline-custom,
-    .contact-form-section .btn-outline-custom {
-        width: 100%; /* Botões de formulário em coluna */
-    }
-    .budget-form-section .btn-outline-custom.me-2 {
-        margin-right: 0 !important;
+        background-color: var(--navbar-bg);
+        border-radius: 0 0 1rem 1rem;
     }
 }

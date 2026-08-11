@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { gsap } from 'gsap'
+import reveal3D from '../utils/reveal3D'
 
 const SERVICE_LINKS = [
   { label: 'Criação de Sites',    href: '/servicos#sites'    },
@@ -55,9 +57,18 @@ function ColHeading({ children }) {
 }
 
 export default function Footer() {
+  const contentRef = useRef(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      reveal3D(contentRef.current, { start: 'top 92%', direction: 'up', distance: 24, rotate: 6, duration: 0.7 })
+    })
+    return () => ctx.revert()
+  }, [])
+
   return (
     <footer style={{ backgroundColor: '#071209' }}>
-      <div className="max-w-7xl mx-auto px-6 py-16">
+      <div ref={contentRef} className="max-w-7xl mx-auto px-6 py-16 opacity-0">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
           {/* Col 1 — Brand */}
@@ -77,7 +88,7 @@ export default function Footer() {
             <div className="flex items-center gap-4">
               {[
                 { href: 'https://instagram.com/zinkra.dev', Icon: InstagramIcon, label: 'Instagram' },
-                { href: '#',                                 Icon: LinkedInIcon,  label: 'LinkedIn'  },
+                { href: 'https://www.linkedin.com/company/zinkra-software/', Icon: LinkedInIcon,  label: 'LinkedIn'  },
                 { href: 'https://wa.me/5511941164044',       Icon: WhatsAppIcon,  label: 'WhatsApp'  },
               ].map(({ href, Icon, label }) => (
                 <a

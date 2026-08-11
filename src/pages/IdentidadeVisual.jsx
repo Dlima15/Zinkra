@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import reveal3D from '../utils/reveal3D'
+import useTilt3D from '../hooks/useTilt3D'
 
 const ENTREGAVEIS = [
   {
@@ -36,27 +38,45 @@ const ENTREGAVEIS = [
   },
 ]
 
+function EntregavelCard({ item, index, setRef }) {
+  const tiltRef = useTilt3D({ max: 8, scale: 1.018 })
+  return (
+    <div
+      ref={el => { tiltRef.current = el; setRef(index, el) }}
+      className="bg-white p-7 rounded-2xl transition-all duration-300"
+      style={{ border: '1px solid #E8EDEA', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}
+      onMouseEnter={e => { e.currentTarget.style.borderColor = '#15C45A'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08)' }}
+      onMouseLeave={e => { e.currentTarget.style.borderColor = '#E8EDEA'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)' }}
+    >
+      <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: '#F5F7F5', border: '1px solid #E8EDEA' }}>
+        {item.icon}
+      </div>
+      <h3 className="font-bold text-[15px] text-[#0A0C0B] mb-2">{item.title}</h3>
+      <p className="text-[13px] leading-[1.7]" style={{ color: '#6A7870' }}>{item.desc}</p>
+    </div>
+  )
+}
+
 export default function IdentidadeVisual() {
   const headRef  = useRef(null)
   const gridRef  = useRef(null)
+  const cardsRef = useRef([])
   const ctaRef   = useRef(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(headRef.current,
-        { opacity: 0, y: 48 },
-        { opacity: 1, y: 0, duration: 0.9, ease: 'power4.out' }
+        { opacity: 0, y: 48, rotateX: 11, transformPerspective: 800 },
+        { opacity: 1, y: 0, rotateX: 0, duration: 0.9, ease: 'power4.out' }
       )
-      gsap.fromTo(gridRef.current?.children ? Array.from(gridRef.current.children) : [],
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 0.7, stagger: 0.08, ease: 'power4.out', delay: 0.3,
-          scrollTrigger: { trigger: gridRef.current, start: 'top 82%', once: true } }
-      )
-      gsap.fromTo(ctaRef.current,
-        { opacity: 0, y: 32 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power4.out',
-          scrollTrigger: { trigger: ctaRef.current, start: 'top 82%', once: true } }
-      )
+      const cards = cardsRef.current.filter(Boolean)
+      if (cards.length) {
+        reveal3D(cards, {
+          trigger: gridRef.current, start: 'top 82%', direction: 'up', distance: 40, rotate: 11,
+          duration: 0.7, stagger: 0.08, delay: 0.3, ease: 'back.out(1.4)',
+        })
+      }
+      reveal3D(ctaRef.current, { direction: 'up', distance: 32, rotate: 9, duration: 0.8, ease: 'power3.out' })
     })
     return () => ctx.revert()
   }, [])
@@ -127,20 +147,13 @@ export default function IdentidadeVisual() {
               </h2>
             </div>
             <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {ENTREGAVEIS.map((item) => (
-                <div
+              {ENTREGAVEIS.map((item, i) => (
+                <EntregavelCard
                   key={item.title}
-                  className="bg-white p-7 rounded-2xl transition-all duration-300"
-                  style={{ border: '1px solid #E8EDEA', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#15C45A'; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08)' }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = '#E8EDEA'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)' }}
-                >
-                  <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: '#F5F7F5', border: '1px solid #E8EDEA' }}>
-                    {item.icon}
-                  </div>
-                  <h3 className="font-bold text-[15px] text-[#0A0C0B] mb-2">{item.title}</h3>
-                  <p className="text-[13px] leading-[1.7]" style={{ color: '#6A7870' }}>{item.desc}</p>
-                </div>
+                  item={item}
+                  index={i}
+                  setRef={(idx, el) => { cardsRef.current[idx] = el }}
+                />
               ))}
             </div>
           </div>

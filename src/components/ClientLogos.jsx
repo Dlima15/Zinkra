@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import reveal3D from '../utils/reveal3D'
 
 const CLIENTS = [
   { name: 'VIP Náutica',  tag: 'Náutica · SP' },
@@ -18,11 +19,7 @@ export default function ClientLogos() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(headRef.current,
-        { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.7, ease: 'power4.out',
-          scrollTrigger: { trigger: headRef.current, start: 'top 85%', once: true } }
-      )
+      reveal3D(headRef.current, { start: 'top 85%', direction: 'up', distance: 24, rotate: 8, duration: 0.7 })
     })
     return () => ctx.revert()
   }, [])

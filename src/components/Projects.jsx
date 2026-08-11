@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import reveal3D from '../utils/reveal3D'
 import { PROJECTS as PROJECT_DATA } from '../data/projects'
 
 const PROJECTS = PROJECT_DATA.map(p => ({
@@ -46,16 +47,11 @@ export default function Projects() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(headRef.current,
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power4.out',
-          scrollTrigger: { trigger: headRef.current, start: 'top 82%', once: true } }
-      )
-      gsap.fromTo(sectionRef.current.querySelector('.carousel-body'),
-        { opacity: 0, y: 48 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power4.out',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 75%', once: true } }
-      )
+      reveal3D(headRef.current, { direction: 'up', distance: 40, rotate: 10, duration: 0.8 })
+      reveal3D(sectionRef.current.querySelector('.carousel-body'), {
+        trigger: sectionRef.current, start: 'top 75%',
+        direction: 'right', distance: 48, rotate: 8, duration: 0.85, ease: 'expo.out',
+      })
     })
     return () => ctx.revert()
   }, [])
@@ -93,7 +89,7 @@ export default function Projects() {
 
             {/* Mockup */}
             <div
-              className="shrink-0 flex items-center justify-center"
+              className="shrink-0 flex items-center justify-center float-idle"
               style={{ transition: 'opacity 0.28s ease', opacity: fading ? 0 : 1 }}
             >
               <img

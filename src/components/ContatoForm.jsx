@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import reveal3D from '../utils/reveal3D'
 
 const SERVICOS = [
   'Criação de Sites',
@@ -45,11 +46,7 @@ export default function ContatoForm() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(ref.current,
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 0.85, ease: 'power4.out',
-          scrollTrigger: { trigger: ref.current, start: 'top 80%', once: true } }
-      )
+      reveal3D(ref.current, { start: 'top 80%', direction: 'up', distance: 40, rotate: 10, duration: 0.85 })
     })
     return () => ctx.revert()
   }, [])

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { gsap } from 'gsap'
 import { AnimatePresence, motion } from 'framer-motion'
+import useMagnetic from '../hooks/useMagnetic'
 
 const NAV_LINKS = [
   { label: 'Início',   to: '/' },
@@ -29,6 +30,7 @@ function WAIcon() {
 
 export default function Navbar() {
   const navRef                      = useRef(null)
+  const ctaRef                      = useMagnetic({ strength: 0.4 })
   const [open, setOpen]             = useState(false)
   const [dropOpen, setDropOpen]     = useState(false)
   const [scrolled, setScrolled]     = useState(false)
@@ -127,10 +129,11 @@ export default function Navbar() {
 
         {/* CTA */}
         <a
+          ref={ctaRef}
           href="https://wa.me/5511941164044"
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm text-white transition-all duration-200 uppercase tracking-wide"
+          className="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm text-white transition-colors duration-200 uppercase tracking-wide"
           style={{ backgroundColor: '#15C45A' }}
           onMouseEnter={e => e.currentTarget.style.backgroundColor = '#0EA84B'}
           onMouseLeave={e => e.currentTarget.style.backgroundColor = '#15C45A'}

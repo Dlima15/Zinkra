@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import reveal3D from '../utils/reveal3D'
 
 const ROWS = [
   { label: 'Desenvolvimento 100% próprio',  zinkra: true,  free: null,  agencia: false },
@@ -51,16 +52,8 @@ export default function Comparativo() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(headRef.current,
-        { opacity: 0, y: 36 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power4.out',
-          scrollTrigger: { trigger: headRef.current, start: 'top 82%', once: true } }
-      )
-      gsap.fromTo(tableRef.current,
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power4.out',
-          scrollTrigger: { trigger: tableRef.current, start: 'top 82%', once: true } }
-      )
+      reveal3D(headRef.current, { direction: 'up', distance: 36, rotate: 10, duration: 0.8 })
+      reveal3D(tableRef.current, { direction: 'up', distance: 40, rotate: 9, duration: 0.8, ease: 'power3.out' })
     })
     return () => ctx.revert()
   }, [])

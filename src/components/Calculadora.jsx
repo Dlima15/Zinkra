@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import reveal3D from '../utils/reveal3D'
+import useTilt3D from '../hooks/useTilt3D'
 
 /* ─── Data ──────────────────────────────────────────────────────────── */
 const SERVICES = [
@@ -270,20 +272,12 @@ export default function Calculadora() {
   const [option,  setOption]  = useState(null)
   const sectionRef = useRef(null)
   const headRef    = useRef(null)
-  const cardRef    = useRef(null)
+  const cardRef    = useTilt3D({ max: 7, scale: 1.012 })
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(headRef.current,
-        { opacity: 0, y: 36 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power4.out',
-          scrollTrigger: { trigger: headRef.current, start: 'top 82%', once: true } }
-      )
-      gsap.fromTo(cardRef.current,
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power4.out',
-          scrollTrigger: { trigger: cardRef.current, start: 'top 82%', once: true } }
-      )
+      reveal3D(headRef.current, { direction: 'up', distance: 36, rotate: 10, duration: 0.8 })
+      reveal3D(cardRef.current, { direction: 'up', distance: 40, rotate: 9, duration: 0.8, ease: 'power3.out' })
     })
     return () => ctx.revert()
   }, [])

@@ -50,8 +50,8 @@ export default function BlogPost() {
   useEffect(() => {
     if (!post) return
     const ctx = gsap.context(() => {
-      gsap.fromTo(headRef.current, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.85, ease: 'power4.out', delay: 0.1 })
-      gsap.fromTo(bodyRef.current, { opacity: 0, y: 32 }, { opacity: 1, y: 0, duration: 0.8,  ease: 'power4.out', delay: 0.3 })
+      gsap.fromTo(headRef.current, { opacity: 0, y: 40, rotateX: 10, transformPerspective: 800 }, { opacity: 1, y: 0, rotateX: 0, duration: 0.85, ease: 'power4.out', delay: 0.1 })
+      gsap.fromTo(bodyRef.current, { opacity: 0, y: 32, rotateX: 8, transformPerspective: 800 }, { opacity: 1, y: 0, rotateX: 0, duration: 0.8,  ease: 'power4.out', delay: 0.3 })
     })
     return () => ctx.revert()
   }, [post])

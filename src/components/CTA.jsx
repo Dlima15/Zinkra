@@ -23,9 +23,9 @@ export default function CTA() {
         scrollTrigger: { trigger: headRef.current, start: 'top 80%', once: true },
       })
       tl.fromTo(preRef.current,  { opacity: 0 },        { opacity: 1, duration: 0.5 })
-        .fromTo(headRef.current, { opacity: 0, y: 48 }, { opacity: 1, y: 0, duration: 0.85, ease: 'power4.out' }, '-=0.2')
-        .fromTo(subRef.current,  { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.7,  ease: 'power4.out' }, '-=0.5')
-        .fromTo(btnRef.current,  { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6,  ease: 'power4.out' }, '-=0.35')
+        .fromTo(headRef.current, { opacity: 0, y: 48, rotateX: 11, transformPerspective: 800 }, { opacity: 1, y: 0, rotateX: 0, duration: 0.85, ease: 'power4.out' }, '-=0.2')
+        .fromTo(subRef.current,  { opacity: 0, y: 28, rotateX: 9, transformPerspective: 800 }, { opacity: 1, y: 0, rotateX: 0, duration: 0.7,  ease: 'power4.out' }, '-=0.5')
+        .fromTo(btnRef.current,  { opacity: 0, y: 20, rotateX: 8, transformPerspective: 800 }, { opacity: 1, y: 0, rotateX: 0, duration: 0.6,  ease: 'power4.out' }, '-=0.35')
         .fromTo(trustRef.current,{ opacity: 0 },        { opacity: 1, duration: 0.5 },                            '-=0.2')
 
       // Subtle pulse keeps the eye on the CTA

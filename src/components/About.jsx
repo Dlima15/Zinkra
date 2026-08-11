@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import reveal3D from '../utils/reveal3D'
 
 /* ─── Animated counter ──────────────────────────────────────────────── */
 function Counter({ target }) {
@@ -76,26 +77,16 @@ export default function About() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(propsRef.current,
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: 'power4.out',
-          scrollTrigger: { trigger: propsRef.current[0], start: 'top 82%', once: true } }
-      )
-      gsap.fromTo(whyRef.current,
-        { opacity: 0, y: 36 },
-        { opacity: 1, y: 0, duration: 0.65, stagger: 0.12, ease: 'power4.out',
-          scrollTrigger: { trigger: whyRef.current[0], start: 'top 82%', once: true } }
-      )
-      gsap.fromTo(leftRef.current,
-        { opacity: 0, x: -52 },
-        { opacity: 1, x: 0, duration: 0.9, ease: 'power4.out',
-          scrollTrigger: { trigger: leftRef.current, start: 'top 82%', once: true } }
-      )
-      gsap.fromTo(rightRef.current,
-        { opacity: 0, x: 52 },
-        { opacity: 1, x: 0, duration: 0.9, ease: 'power4.out',
-          scrollTrigger: { trigger: rightRef.current, start: 'top 82%', once: true } }
-      )
+      reveal3D(propsRef.current, {
+        trigger: propsRef.current[0], direction: 'up', distance: 40, rotate: 9,
+        duration: 0.7, stagger: 0.12, ease: 'back.out(1.4)',
+      })
+      reveal3D(whyRef.current, {
+        trigger: whyRef.current[0], direction: 'up', distance: 36, rotate: 11,
+        duration: 0.65, stagger: 0.12, ease: 'back.out(1.4)',
+      })
+      reveal3D(leftRef.current, { direction: 'right', distance: 52, rotate: 12, duration: 0.9, ease: 'power3.out' })
+      reveal3D(rightRef.current, { direction: 'left', distance: 52, rotate: 12, duration: 0.9, ease: 'power3.out' })
     })
     return () => ctx.revert()
   }, [])

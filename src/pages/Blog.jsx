@@ -3,18 +3,21 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import reveal3D from '../utils/reveal3D'
+import useTilt3D from '../hooks/useTilt3D'
 import { POSTS } from '../data/blog'
 
-function PostCard({ post, index, cardRef }) {
+function PostCard({ post, index, setRef }) {
   const color = '#15C45A'
+  const tiltRef = useTilt3D({ max: 8, scale: 1.02 })
   return (
     <Link
-      ref={cardRef}
+      ref={el => { tiltRef.current = el; setRef(index, el) }}
       to={`/blog/${post.slug}`}
       className="flex flex-col rounded-2xl overflow-hidden transition-all duration-300 opacity-0"
       style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8EDEA' }}
-      onMouseEnter={e => { e.currentTarget.style.borderColor = '#15C45A'; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 12px 32px rgba(0,0,0,0.08)' }}
-      onMouseLeave={e => { e.currentTarget.style.borderColor = '#E8EDEA'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none' }}
+      onMouseEnter={e => { e.currentTarget.style.borderColor = '#15C45A'; e.currentTarget.style.boxShadow = '0 12px 32px rgba(0,0,0,0.08)' }}
+      onMouseLeave={e => { e.currentTarget.style.borderColor = '#E8EDEA'; e.currentTarget.style.boxShadow = 'none' }}
     >
       {/* Cover */}
       <div
@@ -78,14 +81,14 @@ export default function Blog() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(headRef.current,
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 0.85, ease: 'power4.out' }
+        { opacity: 0, y: 40, rotateX: 10, transformPerspective: 800 },
+        { opacity: 1, y: 0, rotateX: 0, duration: 0.85, ease: 'power4.out' }
       )
       const cards = cardsRef.current.filter(Boolean)
       if (cards.length) {
         gsap.fromTo(cards,
-          { opacity: 0, y: 48 },
-          { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power4.out', delay: 0.3 }
+          { opacity: 0, y: 48, rotateX: 12, transformPerspective: 800 },
+          { opacity: 1, y: 0, rotateX: 0, duration: 0.7, stagger: 0.1, ease: 'back.out(1.4)', delay: 0.3 }
         )
       }
     })
@@ -134,7 +137,7 @@ export default function Blog() {
                   key={post.slug}
                   post={post}
                   index={i}
-                  cardRef={el => cardsRef.current[i] = el}
+                  setRef={(idx, el) => { cardsRef.current[idx] = el }}
                 />
               ))}
             </div>

@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import reveal3D from '../utils/reveal3D'
 
 const STEPS = [
   {
@@ -56,16 +57,10 @@ export default function Process() {
     const ctx = gsap.context(() => {
       stepRefs.current.forEach((el, i) => {
         if (!el) return
-        gsap.fromTo(el,
-          { opacity: 0, x: -48 },
-          {
-            opacity: 1, x: 0,
-            duration: 0.75,
-            ease: 'power4.out',
-            delay: i * 0.1,
-            scrollTrigger: { trigger: el, start: 'top 82%', once: true },
-          }
-        )
+        reveal3D(el, {
+          direction: 'right', distance: 48, rotate: 9 + i,
+          duration: 0.75, delay: i * 0.1, ease: 'power4.out',
+        })
       })
     }, sectionRef)
     return () => ctx.revert()

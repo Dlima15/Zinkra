@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import reveal3D from '../utils/reveal3D'
 
 export default function Founder() {
   const photoRef = useRef(null)
@@ -8,16 +9,8 @@ export default function Founder() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(photoRef.current,
-        { opacity: 0, x: -40 },
-        { opacity: 1, x: 0, duration: 0.9, ease: 'power3.out',
-          scrollTrigger: { trigger: photoRef.current, start: 'top 80%', once: true } }
-      )
-      gsap.fromTo(copyRef.current,
-        { opacity: 0, x: 40 },
-        { opacity: 1, x: 0, duration: 0.9, ease: 'power3.out', delay: 0.1,
-          scrollTrigger: { trigger: copyRef.current, start: 'top 80%', once: true } }
-      )
+      reveal3D(photoRef.current, { start: 'top 80%', direction: 'right', distance: 40, rotate: 11, duration: 0.9, ease: 'power3.out' })
+      reveal3D(copyRef.current, { start: 'top 80%', direction: 'left', distance: 40, rotate: 11, duration: 0.9, ease: 'power3.out', delay: 0.1 })
     })
     return () => ctx.revert()
   }, [])

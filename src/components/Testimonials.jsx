@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import reveal3D from '../utils/reveal3D'
+import useTilt3D from '../hooks/useTilt3D'
 
 /* ─── Specific results — not vague praise ──────────────────────────── */
 const TESTIMONIALS = [
@@ -24,22 +26,60 @@ const TESTIMONIALS = [
   },
 ]
 
+function TestimonialCard({ t, index, setRef }) {
+  const tiltRef = useTilt3D({ max: 7, scale: 1.015 })
+  return (
+    <div
+      ref={el => { tiltRef.current = el; setRef(index, el) }}
+      className="p-8 rounded-2xl flex flex-col relative opacity-0"
+      style={{ backgroundColor: '#F5F7F5', border: '1px solid #E8EDEA', transition: 'border-color 0.3s ease' }}
+      onMouseEnter={e => e.currentTarget.style.borderColor = '#15C45A'}
+      onMouseLeave={e => e.currentTarget.style.borderColor = '#E8EDEA'}
+    >
+      {/* Result badge — anchors credibility */}
+      <div className="flex items-center justify-between mb-6">
+        <div
+          className="font-mono text-[11px] font-bold px-2.5 py-1 rounded"
+          style={{ backgroundColor: 'rgba(21,196,90,0.1)', color: '#15C45A', border: '1px solid rgba(21,196,90,0.2)' }}
+        >
+          {t.result}
+        </div>
+      </div>
+
+      {/* Quote mark — subtle, not decorative overload */}
+      <div
+        className="font-serif select-none leading-none mb-4"
+        style={{ fontSize: '40px', color: 'rgba(21,196,90,0.2)', lineHeight: 0.8 }}
+        aria-hidden="true"
+      >
+        "
+      </div>
+
+      {/* Testimonial — specific, with result */}
+      <p className="italic text-[15px] leading-[1.75] flex-1 mb-7" style={{ color: '#4A5550' }}>
+        "{t.quote}"
+      </p>
+
+      {/* Identity */}
+      <div className="pt-5" style={{ borderTop: '1px solid #E8EDEA' }}>
+        <p className="font-bold text-[14px] text-[#0A0C0B]">{t.name}</p>
+        <p className="text-[12px] mt-0.5 font-mono" style={{ color: '#8A9990' }}>{t.role}</p>
+      </div>
+    </div>
+  )
+}
+
 export default function Testimonials() {
   const headRef  = useRef(null)
   const cardsRef = useRef([])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(headRef.current,
-        { opacity: 0, y: 36 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power4.out',
-          scrollTrigger: { trigger: headRef.current, start: 'top 82%', once: true } }
-      )
-      gsap.fromTo(cardsRef.current,
-        { opacity: 0, y: 44 },
-        { opacity: 1, y: 0, duration: 0.75, stagger: 0.14, ease: 'power4.out',
-          scrollTrigger: { trigger: cardsRef.current[0], start: 'top 82%', once: true } }
-      )
+      reveal3D(headRef.current, { direction: 'up', distance: 36, rotate: 9, duration: 0.8 })
+      reveal3D(cardsRef.current, {
+        trigger: cardsRef.current[0], direction: 'up', distance: 44, rotate: 11,
+        duration: 0.75, stagger: 0.14, ease: 'back.out(1.5)',
+      })
     })
     return () => ctx.revert()
   }, [])
@@ -64,44 +104,12 @@ export default function Testimonials() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {TESTIMONIALS.map((t, i) => (
-            <div
+            <TestimonialCard
               key={t.name}
-              ref={el => cardsRef.current[i] = el}
-              className="p-8 rounded-2xl flex flex-col relative transition-all duration-300 opacity-0"
-              style={{ backgroundColor: '#F5F7F5', border: '1px solid #E8EDEA' }}
-              onMouseEnter={e => e.currentTarget.style.borderColor = '#15C45A'}
-              onMouseLeave={e => e.currentTarget.style.borderColor = '#E8EDEA'}
-            >
-              {/* Result badge — anchors credibility */}
-              <div className="flex items-center justify-between mb-6">
-                <div
-                  className="font-mono text-[11px] font-bold px-2.5 py-1 rounded"
-                  style={{ backgroundColor: 'rgba(21,196,90,0.1)', color: '#15C45A', border: '1px solid rgba(21,196,90,0.2)' }}
-                >
-                  {t.result}
-                </div>
-              </div>
-
-              {/* Quote mark — subtle, not decorative overload */}
-              <div
-                className="font-serif select-none leading-none mb-4"
-                style={{ fontSize: '40px', color: 'rgba(21,196,90,0.2)', lineHeight: 0.8 }}
-                aria-hidden="true"
-              >
-                "
-              </div>
-
-              {/* Testimonial — specific, with result */}
-              <p className="italic text-[15px] leading-[1.75] flex-1 mb-7" style={{ color: '#4A5550' }}>
-                "{t.quote}"
-              </p>
-
-              {/* Identity */}
-              <div className="pt-5" style={{ borderTop: '1px solid #E8EDEA' }}>
-                <p className="font-bold text-[14px] text-[#0A0C0B]">{t.name}</p>
-                <p className="text-[12px] mt-0.5 font-mono" style={{ color: '#8A9990' }}>{t.role}</p>
-              </div>
-            </div>
+              t={t}
+              index={i}
+              setRef={(idx, el) => { cardsRef.current[idx] = el }}
+            />
           ))}
         </div>
 

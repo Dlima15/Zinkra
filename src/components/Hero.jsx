@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
+import HeroPanel3D from './three/HeroPanel3D'
+import useMagnetic from '../hooks/useMagnetic'
 
 function WAIcon() {
   return (
@@ -12,6 +14,7 @@ function WAIcon() {
 export default function Hero() {
   const leftRef  = useRef(null)
   const rightRef = useRef(null)
+  const ctaRef   = useMagnetic({ strength: 0.3 })
 
   useEffect(() => {
     gsap.fromTo(leftRef.current,
@@ -63,10 +66,11 @@ export default function Hero() {
 
             <div className="flex flex-wrap items-center gap-4 mb-10">
               <a
+                ref={ctaRef}
                 href="https://wa.me/5511941164044?text=Ol%C3%A1%2C%20quero%20um%20or%C3%A7amento%20para%20meu%20projeto"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 font-bold text-white px-8 py-4 rounded-lg text-[15px] uppercase tracking-wide transition-all duration-200"
+                className="inline-flex items-center gap-3 font-bold text-white px-8 py-4 rounded-lg text-[15px] uppercase tracking-wide transition-colors duration-200"
                 style={{ backgroundColor: '#15C45A' }}
                 onMouseEnter={e => e.currentTarget.style.backgroundColor = '#0EA84B'}
                 onMouseLeave={e => e.currentTarget.style.backgroundColor = '#15C45A'}
@@ -102,7 +106,7 @@ export default function Hero() {
           </div>
 
           {/* Right: real client work, not a stock mockup */}
-          <div ref={rightRef} className="relative h-[440px] lg:h-[560px] flex items-center justify-center">
+          <div ref={rightRef} className="relative h-[520px] lg:h-[660px] flex items-center justify-center">
             <svg
               className="absolute pointer-events-none select-none"
               style={{ top: '-6%', right: '4%', width: '58%', height: '112%', zIndex: 0 }}
@@ -119,12 +123,10 @@ export default function Hero() {
               />
             </svg>
 
-            <img
-              src="/images/mockupvipnautica.png"
-              alt="VIP Náutica — site institucional desenvolvido pela Zinkra, com catálogo de mais de 200 embarcações"
-              className="h-full w-auto relative z-10 select-none"
-              style={{ filter: 'drop-shadow(0 24px 48px rgba(10,12,11,0.22))' }}
-              fetchpriority="high"
+            <HeroPanel3D
+              src="/images/heroimg.png"
+              alt="Zinkra — sistemas, sites e ERPs sob medida desenvolvidos por equipe própria"
+              className="h-full w-auto z-10 select-none"
             />
 
             {/* Real result callout, not a fabricated stat card */}

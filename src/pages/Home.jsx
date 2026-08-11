@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import reveal3D           from '../utils/reveal3D'
 import Hero              from '../components/Hero'
 import Founder           from '../components/Founder'
 import TechStack         from '../components/TechStack'
@@ -12,16 +13,37 @@ import Performance       from '../components/Performance'
 import Vision            from '../components/Vision'
 import Newsletter        from '../components/Newsletter'
 
+/* Generic per-section wrapper — alternates direction/rotate by index so the
+   page assembly itself reads with depth, not just each section's own
+   internal reveal. Skips Hero (already handled) and TechStack (marquee). */
+const SECTION_DIRS  = ['up', 'left', 'right']
+const SECTION_EASES = ['power4.out', 'power3.out', 'expo.out']
+
+function RevealSection({ children, index }) {
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      reveal3D(ref.current, {
+        direction: SECTION_DIRS[index % SECTION_DIRS.length],
+        distance: 40,
+        rotate: 8 + (index % 3) * 2,
+        duration: 0.85,
+        ease: SECTION_EASES[index % SECTION_EASES.length],
+      })
+    })
+    return () => ctx.revert()
+  }, [index])
+
+  return <div ref={ref} className="opacity-0">{children}</div>
+}
+
 function FinalCTA() {
   const ref = useRef(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(ref.current,
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 0.85, ease: 'power4.out',
-          scrollTrigger: { trigger: ref.current, start: 'top 80%', once: true } }
-      )
+      reveal3D(ref.current, { start: 'top 80%', direction: 'up', distance: 40, rotate: 10, duration: 0.85 })
     })
     return () => ctx.revert()
   }, [])
@@ -80,15 +102,15 @@ export default function Home() {
         <meta name="description" content="Software house especializada em sistemas internos, ERPs, SaaS e sites sob medida para empresas em todo o Brasil. 100% personalizado, sem templates. Orçamento gratuito." />
       </Helmet>
       <Hero />
-      <Founder />
+      <RevealSection index={0}><Founder /></RevealSection>
       <TechStack />
-      <ServicesGrid limit={4} />
-      <ClientLogos />
-      <HorizontalProcess />
-      <Performance />
-      <Vision />
-      <Newsletter />
-      <FinalCTA />
+      <RevealSection index={1}><ServicesGrid limit={4} /></RevealSection>
+      <RevealSection index={2}><ClientLogos /></RevealSection>
+      <RevealSection index={3}><HorizontalProcess /></RevealSection>
+      <RevealSection index={4}><Performance /></RevealSection>
+      <RevealSection index={5}><Vision /></RevealSection>
+      <RevealSection index={6}><Newsletter /></RevealSection>
+      <RevealSection index={7}><FinalCTA /></RevealSection>
     </>
   )
 }

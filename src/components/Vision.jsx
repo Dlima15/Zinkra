@@ -13,9 +13,9 @@ export default function Vision() {
       const tl = gsap.timeline({
         scrollTrigger: { trigger: headRef.current, start: 'top 78%', once: true },
       })
-      tl.fromTo(headRef.current, { opacity: 0, y: 52 }, { opacity: 1, y: 0, duration: 0.9, ease: 'power4.out' })
-        .fromTo(bodyRef.current,  { opacity: 0, y: 32 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power4.out' }, '-=0.5')
-        .fromTo(ctaRef.current,   { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power4.out' }, '-=0.4')
+      tl.fromTo(headRef.current, { opacity: 0, y: 52, rotateX: 13, transformPerspective: 800 }, { opacity: 1, y: 0, rotateX: 0, duration: 0.9, ease: 'power4.out' })
+        .fromTo(bodyRef.current,  { opacity: 0, y: 32, rotateX: 9, transformPerspective: 800 }, { opacity: 1, y: 0, rotateX: 0, duration: 0.8, ease: 'power4.out' }, '-=0.5')
+        .fromTo(ctaRef.current,   { opacity: 0, y: 24, rotateX: 8, transformPerspective: 800 }, { opacity: 1, y: 0, rotateX: 0, duration: 0.7, ease: 'power4.out' }, '-=0.4')
     }, sectionRef)
     return () => ctx.revert()
   }, [])

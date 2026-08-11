@@ -1,8 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import Layout              from './Layout'
 import Home                from './pages/Home'
@@ -19,8 +17,6 @@ import NotFound            from './pages/NotFound'
 import PropostasLogin      from './pages/propostas/PropostasLogin'
 import PropostaDashboard   from './pages/propostas/PropostaDashboard'
 import PropostaGerador     from './pages/propostas/PropostaGerador'
-
-gsap.registerPlugin(ScrollTrigger)
 
 export default function App() {
   return (

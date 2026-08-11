@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import reveal3D from '../utils/reveal3D'
+import useTilt3D from '../hooks/useTilt3D'
 
 const SERVICES = [
   {
@@ -85,6 +87,38 @@ const SERVICES = [
   },
 ]
 
+function ServiceCard({ svc, index, setRef }) {
+  const tiltRef = useTilt3D({ max: 8, scale: 1.018 })
+  return (
+    <div
+      ref={el => { tiltRef.current = el; setRef(index, el) }}
+      className="bg-white p-7 rounded-2xl opacity-0 transition-all duration-300 group"
+      style={{ border: '1px solid #E8EDEA', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}
+      onMouseEnter={e => {
+        e.currentTarget.style.borderColor = 'rgba(21,196,90,0.35)'
+        e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.10)'
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.borderColor = '#E8EDEA'
+        e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)'
+      }}
+    >
+      <div
+        className="w-11 h-11 rounded-xl flex items-center justify-center mb-5"
+        style={{ backgroundColor: 'rgba(21,196,90,0.1)', color: '#15C45A' }}
+      >
+        {svc.icon}
+      </div>
+      <h3 className="font-bold text-[15px] mb-3 leading-snug" style={{ color: '#0A0C0B' }}>
+        {svc.title}
+      </h3>
+      <p className="text-[13px] leading-[1.7]" style={{ color: '#6A7870' }}>
+        {svc.desc}
+      </p>
+    </div>
+  )
+}
+
 export default function ServicesGrid({ limit }) {
   const services = limit ? SERVICES.slice(0, limit) : SERVICES
   const headRef  = useRef(null)
@@ -92,18 +126,13 @@ export default function ServicesGrid({ limit }) {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(headRef.current,
-        { opacity: 0, y: 32 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power4.out',
-          scrollTrigger: { trigger: headRef.current, start: 'top 85%', once: true } }
-      )
+      reveal3D(headRef.current, { start: 'top 85%', direction: 'up', distance: 32, rotate: 9, duration: 0.8 })
       const cards = cardsRef.current.filter(Boolean)
       if (cards.length) {
-        gsap.fromTo(cards,
-          { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 0.65, stagger: 0.07, ease: 'power4.out',
-            scrollTrigger: { trigger: cards[0], start: 'top 85%', once: true } }
-        )
+        reveal3D(cards, {
+          trigger: cards[0], start: 'top 85%', direction: 'up', distance: 40, rotate: 11,
+          duration: 0.65, stagger: 0.07, ease: 'back.out(1.4)',
+        })
       }
     })
     return () => ctx.revert()
@@ -127,35 +156,12 @@ export default function ServicesGrid({ limit }) {
 
         <div className={`grid grid-cols-1 sm:grid-cols-2 ${limit ? 'lg:grid-cols-4' : 'lg:grid-cols-4'} gap-5`}>
           {services.map((svc, i) => (
-            <div
+            <ServiceCard
               key={svc.title}
-              ref={el => cardsRef.current[i] = el}
-              className="bg-white p-7 rounded-2xl opacity-0 transition-all duration-300 group"
-              style={{ border: '1px solid #E8EDEA', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}
-              onMouseEnter={e => {
-                e.currentTarget.style.borderColor = 'rgba(21,196,90,0.35)'
-                e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.10)'
-                e.currentTarget.style.transform = 'translateY(-4px)'
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.borderColor = '#E8EDEA'
-                e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)'
-                e.currentTarget.style.transform = 'translateY(0)'
-              }}
-            >
-              <div
-                className="w-11 h-11 rounded-xl flex items-center justify-center mb-5"
-                style={{ backgroundColor: 'rgba(21,196,90,0.1)', color: '#15C45A' }}
-              >
-                {svc.icon}
-              </div>
-              <h3 className="font-bold text-[15px] mb-3 leading-snug" style={{ color: '#0A0C0B' }}>
-                {svc.title}
-              </h3>
-              <p className="text-[13px] leading-[1.7]" style={{ color: '#6A7870' }}>
-                {svc.desc}
-              </p>
-            </div>
+              svc={svc}
+              index={i}
+              setRef={(idx, el) => { cardsRef.current[idx] = el }}
+            />
           ))}
         </div>
 

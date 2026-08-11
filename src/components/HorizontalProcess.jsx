@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import reveal3D from '../utils/reveal3D'
 
 const STEPS = [
   {
@@ -69,16 +70,11 @@ export default function HorizontalProcess() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(headRef.current,
-        { opacity: 0, y: 36 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power4.out',
-          scrollTrigger: { trigger: headRef.current, start: 'top 82%', once: true } }
-      )
-      gsap.fromTo(stepsRef.current,
-        { opacity: 0, y: 48 },
-        { opacity: 1, y: 0, duration: 0.65, stagger: 0.1, ease: 'power4.out',
-          scrollTrigger: { trigger: stepsRef.current[0], start: 'top 82%', once: true } }
-      )
+      reveal3D(headRef.current, { direction: 'up', distance: 36, rotate: 10, duration: 0.8 })
+      reveal3D(stepsRef.current, {
+        trigger: stepsRef.current[0], direction: 'up', distance: 48, rotate: 12,
+        duration: 0.65, stagger: 0.1, ease: 'back.out(1.4)',
+      })
     })
     return () => ctx.revert()
   }, [])

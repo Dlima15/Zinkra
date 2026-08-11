@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import reveal3D from '../utils/reveal3D'
+import useTilt3D from '../hooks/useTilt3D'
 
 /* Pain scenarios — specific, relatable, uncomfortable */
 const PAINS = [
@@ -33,6 +35,27 @@ const PAINS = [
   },
 ]
 
+function PainCard({ p, index, setRef }) {
+  const tiltRef = useTilt3D({ max: 7, scale: 1.015 })
+  return (
+    <div
+      ref={el => { tiltRef.current = el; setRef(index, el) }}
+      className="p-8 rounded-xl relative overflow-hidden opacity-0 transition-all duration-300"
+      style={{
+        backgroundColor: '#111116',
+        border: '1px solid rgba(255,77,77,0.15)',
+        borderLeft: '3px solid #FF4D4D',
+      }}
+      onMouseEnter={e => e.currentTarget.style.boxShadow = '0 8px 40px rgba(255,77,77,0.08)'}
+      onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
+    >
+      <div className="mb-5">{p.icon}</div>
+      <h3 className="font-bold text-[17px] text-white mb-3">{p.title}</h3>
+      <p className="text-[14px] leading-[1.7]" style={{ color: '#C7D1CB' }}>{p.desc}</p>
+    </div>
+  )
+}
+
 export default function Problem() {
   const headRef  = useRef(null)
   const cardsRef = useRef([])
@@ -40,21 +63,12 @@ export default function Problem() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(headRef.current,
-        { opacity: 0, y: 44 },
-        { opacity: 1, y: 0, duration: 0.85, ease: 'power4.out',
-          scrollTrigger: { trigger: headRef.current, start: 'top 82%', once: true } }
-      )
-      gsap.fromTo(cardsRef.current,
-        { opacity: 0, y: 52 },
-        { opacity: 1, y: 0, duration: 0.75, stagger: 0.14, ease: 'power4.out',
-          scrollTrigger: { trigger: cardsRef.current[0], start: 'top 82%', once: true } }
-      )
-      gsap.fromTo(footRef.current,
-        { opacity: 0, y: 28 },
-        { opacity: 1, y: 0, duration: 0.7, ease: 'power4.out',
-          scrollTrigger: { trigger: footRef.current, start: 'top 90%', once: true } }
-      )
+      reveal3D(headRef.current, { direction: 'up', distance: 44, rotate: 10, duration: 0.85 })
+      reveal3D(cardsRef.current, {
+        trigger: cardsRef.current[0], direction: 'up', distance: 52, rotate: 12,
+        duration: 0.75, stagger: 0.14, ease: 'back.out(1.4)',
+      })
+      reveal3D(footRef.current, { start: 'top 90%', direction: 'up', distance: 28, rotate: 8, duration: 0.7 })
     })
     return () => ctx.revert()
   }, [])
@@ -88,22 +102,12 @@ export default function Problem() {
         {/* Pain cards — left border red, specific pain scenarios */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-14">
           {PAINS.map((p, i) => (
-            <div
+            <PainCard
               key={p.title}
-              ref={el => cardsRef.current[i] = el}
-              className="p-8 rounded-xl relative overflow-hidden opacity-0 transition-all duration-300"
-              style={{
-                backgroundColor: '#111116',
-                border: '1px solid rgba(255,77,77,0.15)',
-                borderLeft: '3px solid #FF4D4D',
-              }}
-              onMouseEnter={e => e.currentTarget.style.boxShadow = '0 8px 40px rgba(255,77,77,0.08)'}
-              onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
-            >
-              <div className="mb-5">{p.icon}</div>
-              <h3 className="font-bold text-[17px] text-white mb-3">{p.title}</h3>
-              <p className="text-[14px] leading-[1.7]" style={{ color: '#C7D1CB' }}>{p.desc}</p>
-            </div>
+              p={p}
+              index={i}
+              setRef={(idx, el) => { cardsRef.current[idx] = el }}
+            />
           ))}
         </div>
 

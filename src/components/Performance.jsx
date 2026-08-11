@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import reveal3D from '../utils/reveal3D'
 
 function ImgPlaceholder({ name }) {
   return (
@@ -26,16 +27,8 @@ export default function Performance() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(textRef.current,
-        { opacity: 0, x: -52 },
-        { opacity: 1, x: 0, duration: 0.9, ease: 'power4.out',
-          scrollTrigger: { trigger: textRef.current, start: 'top 82%', once: true } }
-      )
-      gsap.fromTo(imgRef.current,
-        { opacity: 0, x: 52 },
-        { opacity: 1, x: 0, duration: 0.9, ease: 'power4.out',
-          scrollTrigger: { trigger: imgRef.current, start: 'top 82%', once: true } }
-      )
+      reveal3D(textRef.current, { direction: 'right', distance: 52, rotate: 12, duration: 0.9 })
+      reveal3D(imgRef.current, { direction: 'left', distance: 52, rotate: 12, duration: 0.9 })
     })
     return () => ctx.revert()
   }, [])

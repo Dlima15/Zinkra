@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import reveal3D from '../utils/reveal3D'
 import SaasCard from '../components/SaasCard'
 
 const SAAS_PRODUCTS = [
@@ -45,21 +46,9 @@ export default function Saas() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(headRef.current,
-        { opacity: 0, y: 48 },
-        { opacity: 1, y: 0, duration: 0.9, ease: 'power4.out',
-          scrollTrigger: { trigger: headRef.current, start: 'top 82%', once: true } }
-      )
-      gsap.fromTo(gridRef.current,
-        { opacity: 0, y: 48 },
-        { opacity: 1, y: 0, duration: 0.85, ease: 'power4.out',
-          scrollTrigger: { trigger: gridRef.current, start: 'top 82%', once: true } }
-      )
-      gsap.fromTo(ctaRef.current,
-        { opacity: 0, y: 32 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power4.out',
-          scrollTrigger: { trigger: ctaRef.current, start: 'top 82%', once: true } }
-      )
+      reveal3D(headRef.current, { direction: 'up', distance: 48, rotate: 11, duration: 0.9 })
+      reveal3D(gridRef.current, { direction: 'up', distance: 48, rotate: 10, duration: 0.85, ease: 'power3.out' })
+      reveal3D(ctaRef.current, { direction: 'up', distance: 32, rotate: 9, duration: 0.8, ease: 'expo.out' })
     })
     return () => ctx.revert()
   }, [])

@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import useTilt3D from '../hooks/useTilt3D'
 
 const FOUNDER = {
   img: '/images/danilo-lima-cruz.png',
@@ -40,9 +41,33 @@ const CREW = [
   },
 ]
 
+function CrewCard({ m, index, setRef }) {
+  const tiltRef = useTilt3D({ max: 8, scale: 1.02 })
+  return (
+    <div
+      ref={el => { tiltRef.current = el; setRef(index, el) }}
+      className="p-6 rounded-2xl flex items-start gap-4 opacity-0"
+      style={{ backgroundColor: '#0D1210', border: '1px solid #262E28', transition: 'border-color 0.3s ease' }}
+      onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(21,196,90,0.3)'}
+      onMouseLeave={e => e.currentTarget.style.borderColor = '#262E28'}
+    >
+      <div
+        className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
+        style={{ backgroundColor: 'rgba(21,196,90,0.1)', border: '1px solid rgba(21,196,90,0.2)' }}
+      >
+        {m.icon}
+      </div>
+      <div>
+        <p className="font-bold text-[14px] text-white mb-1">{m.role}</p>
+        <p className="text-[13px] leading-[1.6]" style={{ color: '#7A9A85' }}>{m.desc}</p>
+      </div>
+    </div>
+  )
+}
+
 export default function Team() {
   const headRef  = useRef(null)
-  const cardRef  = useRef(null)
+  const cardRef  = useTilt3D({ max: 6, scale: 1.008 })
   const crewRef  = useRef([])
 
   useEffect(() => {
@@ -50,8 +75,8 @@ export default function Team() {
       const tl = gsap.timeline({
         scrollTrigger: { trigger: headRef.current, start: 'top 82%', once: true },
       })
-      tl.fromTo(headRef.current, { opacity: 0, x: -32 }, { opacity: 1, x: 0, duration: 0.75, ease: 'power3.out' })
-        .fromTo(cardRef.current,  { opacity: 0, x: 32 },  { opacity: 1, x: 0, duration: 0.75, ease: 'power3.out' }, '-=0.5')
+      tl.fromTo(headRef.current, { opacity: 0, x: -32, rotateY: -10, transformPerspective: 800 }, { opacity: 1, x: 0, rotateY: 0, duration: 0.75, ease: 'power3.out' })
+        .fromTo(cardRef.current,  { opacity: 0, x: 32, rotateY: 10, transformPerspective: 800 },  { opacity: 1, x: 0, rotateY: 0, duration: 0.75, ease: 'power3.out' }, '-=0.5')
 
       const crew = crewRef.current.filter(Boolean)
       if (crew.length) {
@@ -123,25 +148,12 @@ export default function Team() {
         {/* Rest of the crew — roles confirmed, names to follow */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {CREW.map((m, i) => (
-            <div
+            <CrewCard
               key={m.role}
-              ref={el => crewRef.current[i] = el}
-              className="p-6 rounded-2xl flex items-start gap-4 opacity-0 transition-all duration-300"
-              style={{ backgroundColor: '#0D1210', border: '1px solid #262E28' }}
-              onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(21,196,90,0.3)'}
-              onMouseLeave={e => e.currentTarget.style.borderColor = '#262E28'}
-            >
-              <div
-                className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
-                style={{ backgroundColor: 'rgba(21,196,90,0.1)', border: '1px solid rgba(21,196,90,0.2)' }}
-              >
-                {m.icon}
-              </div>
-              <div>
-                <p className="font-bold text-[14px] text-white mb-1">{m.role}</p>
-                <p className="text-[13px] leading-[1.6]" style={{ color: '#7A9A85' }}>{m.desc}</p>
-              </div>
-            </div>
+              m={m}
+              index={i}
+              setRef={(idx, el) => { crewRef.current[idx] = el }}
+            />
           ))}
         </div>
 

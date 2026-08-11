@@ -25,12 +25,12 @@ export default function ProjetoDetalhe() {
     if (!project) return
     const ctx = gsap.context(() => {
       gsap.fromTo(headRef.current,
-        { opacity: 0, y: 48 },
-        { opacity: 1, y: 0, duration: 0.9, ease: 'power4.out', delay: 0.1 }
+        { opacity: 0, y: 48, rotateX: 11, transformPerspective: 800 },
+        { opacity: 1, y: 0, rotateX: 0, duration: 0.9, ease: 'power4.out', delay: 0.1 }
       )
       gsap.fromTo(contentRef.current,
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power4.out', delay: 0.3 }
+        { opacity: 0, y: 40, rotateX: 9, transformPerspective: 800 },
+        { opacity: 1, y: 0, rotateX: 0, duration: 0.8, ease: 'power4.out', delay: 0.3 }
       )
     })
     return () => ctx.revert()

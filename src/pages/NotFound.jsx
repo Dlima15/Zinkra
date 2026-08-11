@@ -7,8 +7,8 @@ export default function NotFound() {
 
   useEffect(() => {
     gsap.fromTo(ref.current,
-      { opacity: 0, y: 40 },
-      { opacity: 1, y: 0, duration: 0.8, ease: 'power4.out', delay: 0.1 }
+      { opacity: 0, y: 40, rotateX: 10, transformPerspective: 800 },
+      { opacity: 1, y: 0, rotateX: 0, duration: 0.8, ease: 'power4.out', delay: 0.1 }
     )
   }, [])
 

@@ -1,18 +1,19 @@
 import React from 'react'
+import useTilt3D from '../hooks/useTilt3D'
 
 export default function SaasCard({ name, desc, img, tags, demo, waText }) {
+  const tiltRef = useTilt3D({ max: 8, scale: 1.02 })
   return (
     <div
+      ref={tiltRef}
       className="flex flex-col rounded-2xl overflow-hidden transition-all duration-300"
       style={{ backgroundColor: '#0D1210', border: '1px solid #262E28' }}
       onMouseEnter={e => {
         e.currentTarget.style.borderColor = 'rgba(21,196,90,0.5)'
-        e.currentTarget.style.transform   = 'translateY(-4px)'
         e.currentTarget.style.boxShadow   = '0 20px 40px rgba(0,0,0,0.2)'
       }}
       onMouseLeave={e => {
         e.currentTarget.style.borderColor = '#262E28'
-        e.currentTarget.style.transform   = 'translateY(0)'
         e.currentTarget.style.boxShadow   = 'none'
       }}
     >

@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { gsap } from 'gsap'
+import reveal3D from '../utils/reveal3D'
 import CTA         from '../components/CTA'
 import ContatoForm from '../components/ContatoForm'
 
@@ -9,11 +10,7 @@ export default function Contato() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(formHeadRef.current,
-        { opacity: 0, y: 36 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power4.out',
-          scrollTrigger: { trigger: formHeadRef.current, start: 'top 82%', once: true } }
-      )
+      reveal3D(formHeadRef.current, { direction: 'up', distance: 36, rotate: 10, duration: 0.8 })
     })
     return () => ctx.revert()
   }, [])

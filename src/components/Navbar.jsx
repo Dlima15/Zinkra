@@ -52,8 +52,15 @@ export default function Navbar() {
   return (
     <nav
       ref={navRef}
-      className={`fixed z-50 transition-all duration-500 ${scrolled ? 'top-3 inset-x-4 lg:inset-x-8 rounded-2xl py-3' : 'top-0 inset-x-0 rounded-none py-4'}`}
+      className={`nav-glass fixed z-50 transition-all duration-500 ${scrolled ? 'top-3 inset-x-4 lg:inset-x-8 rounded-2xl py-3' : 'top-0 inset-x-0 rounded-none py-4'}`}
       style={{
+        // Solid on touch (see .nav-glass override in index.css), translucent+blurred
+        // on mouse devices. A blurred position:fixed header is a well-known mobile
+        // Safari/Chrome performance trap: it has to recomposite the blur on every
+        // scroll frame, and on a slow enough device that can make the very first
+        // scroll gesture after page load feel completely stuck until something
+        // else (e.g. a tap) forces a repaint. Desktop keeps the glass look exactly
+        // as before.
         backgroundColor: scrolled ? 'rgba(255,255,255,0.72)' : 'rgba(255,255,255,0.92)',
         backdropFilter: 'blur(24px) saturate(180%)',
         WebkitBackdropFilter: 'blur(24px) saturate(180%)',

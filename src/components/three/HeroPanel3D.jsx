@@ -7,17 +7,6 @@ function reducedMotion() {
     window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
-// Touch/coarse-pointer devices (phones, tablets) have no hover, so the mouse-tilt
-// this panel exists for never applies there — only the idle float would run.
-// That's not worth the WebGL canvas fighting touch-scroll for: a mobile Safari/Chrome
-// quirk with a full-bleed <canvas> sitting over scrollable content makes vertical
-// drags on top of it feel like they resist/spring back instead of scrolling smoothly.
-// Coarse-pointer devices get the plain <img> only — no Canvas is mounted at all.
-function isCoarsePointer() {
-  return typeof window !== 'undefined' &&
-    window.matchMedia('(pointer: coarse)').matches
-}
-
 function MockupPlane({ url, pointer, onReady }) {
   const meshRef = useRef(null)
   const texture = useLoader(THREE.TextureLoader, url)
@@ -77,11 +66,12 @@ function MockupPlane({ url, pointer, onReady }) {
 export default function HeroPanel3D({ src, alt, className, style }) {
   const pointer = useRef({ x: 0, y: 0 })
   const [ready, setReady] = useState(false)
-  // Read once — pointer type doesn't change during a session, and re-checking
-  // on every render would be wasted work.
-  const [skipCanvas] = useState(isCoarsePointer)
 
+  // Touch drag fires pointermove too (pointerType 'touch'), which was being read
+  // as mouse-tilt input — updating this on every scroll-drag frame is what made
+  // scrolling past the hero image feel stuck. Only real mouse hover drives the tilt.
   const handlePointerMove = (e) => {
+    if (e.pointerType === 'touch') return
     const rect = e.currentTarget.getBoundingClientRect()
     pointer.current.x = ((e.clientX - rect.left) / rect.width) * 2 - 1
     pointer.current.y = ((e.clientY - rect.top) / rect.height) * 2 - 1
@@ -102,7 +92,7 @@ export default function HeroPanel3D({ src, alt, className, style }) {
         className="h-full w-auto relative select-none"
         style={{
           filter: 'drop-shadow(0 24px 48px rgba(10,12,11,0.22))',
-          opacity: skipCanvas || ready ? 0 : 1,
+          opacity: ready ? 0 : 1,
           transition: 'opacity 0.5s ease',
           WebkitUserDrag: 'none',
           WebkitTouchCallout: 'none',
@@ -111,35 +101,17 @@ export default function HeroPanel3D({ src, alt, className, style }) {
         }}
         fetchpriority="high"
       />
-      {skipCanvas ? (
-        // Coarse-pointer device: same image, plain <img>, no WebGL canvas at all.
-        <img
-          src={src}
-          alt=""
-          aria-hidden="true"
-          draggable={false}
-          className="h-full w-auto relative select-none"
-          style={{
-            filter: 'drop-shadow(0 24px 48px rgba(10,12,11,0.22))',
-            WebkitUserDrag: 'none',
-            WebkitTouchCallout: 'none',
-            touchAction: 'pan-y',
-            pointerEvents: 'none',
-          }}
-        />
-      ) : (
-        <Canvas
-          className="!absolute inset-0"
-          dpr={[1, 2]}
-          camera={{ position: [0, 0, 4], fov: 32 }}
-          gl={{ alpha: true, antialias: true }}
-          style={{ opacity: ready ? 1 : 0, transition: 'opacity 0.5s ease', touchAction: 'pan-y', pointerEvents: 'none' }}
-        >
-          <Suspense fallback={null}>
-            <MockupPlane url={src} pointer={pointer} onReady={() => setReady(true)} />
-          </Suspense>
-        </Canvas>
-      )}
+      <Canvas
+        className="!absolute inset-0"
+        dpr={[1, 2]}
+        camera={{ position: [0, 0, 4], fov: 32 }}
+        gl={{ alpha: true, antialias: true }}
+        style={{ opacity: ready ? 1 : 0, transition: 'opacity 0.5s ease', touchAction: 'pan-y', pointerEvents: 'none' }}
+      >
+        <Suspense fallback={null}>
+          <MockupPlane url={src} pointer={pointer} onReady={() => setReady(true)} />
+        </Suspense>
+      </Canvas>
     </div>
   )
 }

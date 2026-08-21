@@ -23,6 +23,10 @@ export default function useTilt3D({ max = 10, scale = 1.015, disabled = false } 
     const scaleTo = gsap.quickTo(el, 'scale', { duration: 0.4, ease: 'power3.out' })
 
     const onMove = (e) => {
+      // Touch drag fires pointermove too — reading it as tilt input is what made
+      // scrolling past these cards on phones/tablets feel stuck (the card kept
+      // re-rotating under the finger instead of the page just scrolling).
+      if (e.pointerType === 'touch') return
       const rect = el.getBoundingClientRect()
       const px = (e.clientX - rect.left) / rect.width - 0.5
       const py = (e.clientY - rect.top) / rect.height - 0.5

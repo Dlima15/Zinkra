@@ -18,6 +18,9 @@ export default function useMagnetic({ strength = 0.35 } = {}) {
     const moveToY = gsap.quickTo(el, 'y', { duration: 0.5, ease: 'power3.out' })
 
     const onMove = (e) => {
+      // Touch drag fires pointermove too — pulling the button toward a finger
+      // that's actually trying to scroll past it is what made the page feel stuck.
+      if (e.pointerType === 'touch') return
       const rect = el.getBoundingClientRect()
       const px = e.clientX - (rect.left + rect.width / 2)
       const py = e.clientY - (rect.top + rect.height / 2)

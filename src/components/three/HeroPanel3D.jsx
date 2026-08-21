@@ -84,11 +84,16 @@ export default function HeroPanel3D({ src, alt, className, style }) {
       <img
         src={src}
         alt={alt}
+        draggable={false}
         className="h-full w-auto relative select-none"
         style={{
           filter: 'drop-shadow(0 24px 48px rgba(10,12,11,0.22))',
           opacity: ready ? 0 : 1,
           transition: 'opacity 0.5s ease',
+          WebkitUserDrag: 'none',
+          WebkitTouchCallout: 'none',
+          touchAction: 'pan-y',
+          pointerEvents: 'none',
         }}
         fetchpriority="high"
       />
@@ -97,7 +102,7 @@ export default function HeroPanel3D({ src, alt, className, style }) {
         dpr={[1, 2]}
         camera={{ position: [0, 0, 4], fov: 32 }}
         gl={{ alpha: true, antialias: true }}
-        style={{ opacity: ready ? 1 : 0, transition: 'opacity 0.5s ease' }}
+        style={{ opacity: ready ? 1 : 0, transition: 'opacity 0.5s ease', touchAction: 'pan-y', pointerEvents: 'none' }}
       >
         <Suspense fallback={null}>
           <MockupPlane url={src} pointer={pointer} onReady={() => setReady(true)} />

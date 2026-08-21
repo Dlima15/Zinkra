@@ -1,59 +1,25 @@
-import React, { Suspense, useRef, useState } from 'react'
-import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber'
-import * as THREE from 'three'
+import React, { Suspense, lazy, useEffect, useRef, useState } from 'react'
 
-function reducedMotion() {
-  return typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches
-}
+const HeroPanel3DCanvas = lazy(() => import('./HeroPanel3DCanvas'))
 
-function MockupPlane({ url, pointer, onReady }) {
-  const meshRef = useRef(null)
-  const texture = useLoader(THREE.TextureLoader, url)
-  const still = reducedMotion()
-  const readyFired = useRef(false)
-
-  if (!readyFired.current) {
-    readyFired.current = true
-    onReady()
-  }
-
-  const { viewport } = useThree()
-  const aspect = texture.image ? texture.image.width / texture.image.height : 0.62
-
-  // Fit the whole image inside the visible frustum (like object-fit: contain)
-  // instead of a fixed world-unit size — a fixed size clipped the mockup
-  // whenever it was taller/wider than what the camera actually sees.
-  const margin = 0.92 // headroom so mouse-tilt rotation never clips an edge
-  let height = viewport.height * margin
-  let width = height * aspect
-  if (width > viewport.width * margin) {
-    width = viewport.width * margin
-    height = width / aspect
-  }
-
-  useFrame((state) => {
-    const m = meshRef.current
-    if (!m) return
-    const t = state.clock.elapsedTime
-    const targetY = still ? 0 : pointer.current.x * 0.22
-    const targetX = still ? 0 : -pointer.current.y * 0.12 + Math.sin(t * 0.6) * 0.015
-    m.rotation.y = THREE.MathUtils.lerp(m.rotation.y, targetY, 0.06)
-    m.rotation.x = THREE.MathUtils.lerp(m.rotation.x, targetX, 0.06)
-    m.position.y = still ? 0 : Math.sin(t * 0.7) * 0.045
-  })
-
-  return (
-    <mesh ref={meshRef}>
-      <planeGeometry args={[width, height]} />
-      {/* Unlit on purpose: a lit material shades the image's own flat white
-          background unevenly under the directional lights, which is exactly
-          what made the panel read as a visible rectangle against the page.
-          meshBasicMaterial shows the texture as authored — same flat white,
-          same as the page behind it. */}
-      <meshBasicMaterial map={texture} toneMapped={false} />
-    </mesh>
-  )
+// Defer the WebGL canvas until the browser is idle, so the ~800KB three.js
+// chunk doesn't compete with the user's very first scroll gesture for
+// main-thread time right after the page loads — that contention was making
+// the first attempt to scroll past the hero on phones get dropped, only
+// working after some other interaction gave the thread a chance to catch up.
+// requestIdleCallback isn't in Safari, hence the setTimeout fallback.
+function useIdle(delay = 300) {
+  const [idle, setIdle] = useState(false)
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    if ('requestIdleCallback' in window) {
+      const id = window.requestIdleCallback(() => setIdle(true), { timeout: delay * 2 })
+      return () => window.cancelIdleCallback(id)
+    }
+    const id = setTimeout(() => setIdle(true), delay)
+    return () => clearTimeout(id)
+  }, [delay])
+  return idle
 }
 
 /*
@@ -66,6 +32,7 @@ function MockupPlane({ url, pointer, onReady }) {
 export default function HeroPanel3D({ src, alt, className, style }) {
   const pointer = useRef({ x: 0, y: 0 })
   const [ready, setReady] = useState(false)
+  const idle = useIdle()
 
   // Touch drag fires pointermove too (pointerType 'touch'), which was being read
   // as mouse-tilt input — updating this on every scroll-drag frame is what made
@@ -101,17 +68,13 @@ export default function HeroPanel3D({ src, alt, className, style }) {
         }}
         fetchpriority="high"
       />
-      <Canvas
-        className="!absolute inset-0"
-        dpr={[1, 2]}
-        camera={{ position: [0, 0, 4], fov: 32 }}
-        gl={{ alpha: true, antialias: true }}
-        style={{ opacity: ready ? 1 : 0, transition: 'opacity 0.5s ease', touchAction: 'pan-y', pointerEvents: 'none' }}
-      >
+      {idle && (
         <Suspense fallback={null}>
-          <MockupPlane url={src} pointer={pointer} onReady={() => setReady(true)} />
+          <div style={{ opacity: ready ? 1 : 0, transition: 'opacity 0.5s ease', position: 'absolute', inset: 0 }}>
+            <HeroPanel3DCanvas src={src} pointer={pointer} onReady={() => setReady(true)} />
+          </div>
         </Suspense>
-      </Canvas>
+      )}
     </div>
   )
 }
